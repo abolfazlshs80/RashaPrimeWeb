@@ -42,7 +42,7 @@ The project is organized in a modular way according to the principles of clean a
 ## 🚀 ** How to run: **
 
 ### Prerequisites:
-- .NET SDK (specified version)
+- .NET SDK (.NET 8)
 - SQL Server (or any desired database)
 - HTML,CSS,BOOTSTRAP
 
