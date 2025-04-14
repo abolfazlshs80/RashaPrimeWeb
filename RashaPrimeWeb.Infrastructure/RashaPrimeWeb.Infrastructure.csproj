@@ -1,0 +1,21 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net8.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\RashaPrimeWeb.Application\RashaPrimeWeb.Application.csproj" />
+    <ProjectReference Include="..\RashaPrimeWeb.Domain\RashaPrimeWeb.Domain.csproj" />
+  </ItemGroup>
+
+
+	<ItemGroup>
+
+		<PackageReference Include="Dapper" Version="2.1.66" />
+		<PackageReference Include="FluentValidation.AspNetCore" Version="11.3.0" />
+		<PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="8.0.0" />
+	</ItemGroup>
+</Project>

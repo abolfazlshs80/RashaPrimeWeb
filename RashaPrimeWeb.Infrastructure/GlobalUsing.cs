@@ -1,0 +1,1 @@
+﻿global using RashaPrimeWeb.Domain.Entities;
