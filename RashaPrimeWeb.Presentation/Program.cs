@@ -1,4 +1,4 @@
-using RashaPrimeWeb.Application;
+﻿using RashaPrimeWeb.Application;
 using RashaPrimeWeb.Infrastructure;
 
 namespace RashaPrimeWeb.Presentation
@@ -23,6 +23,7 @@ namespace RashaPrimeWeb.Presentation
 
             app.UseRouting();
 
+            app.UseAuthentication(); // قبل از UseAuthorization قرار دارد
             app.UseAuthorization();
 
             app.MapControllerRoute(

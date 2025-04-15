@@ -35,8 +35,35 @@ public static class ConfigureServices
         services.AddFluentValidationAutoValidation(); // اعتبارسنجی خودکار سمت سرور
         services.AddFluentValidationClientsideAdapters(); // اعتبارسنجی سمت کلاینت (اختیاری)
 
+        //Add Identity
 
-    
+
+        #region AddIdentity
+
+        services.AddIdentity<UserApplication, IdentityRole>()
+            .AddEntityFrameworkStores<ApplicationDbContext>()
+            .AddDefaultTokenProviders();
+
+
+        services.Configure<IdentityOptions>(options =>
+        {
+            // تنظیمات اعتبارسنجی رمز عبور
+            options.Password.RequireDigit = false;
+            options.Password.RequireLowercase = false;
+            options.Password.RequireUppercase = false;
+            options.Password.RequireNonAlphanumeric = false;
+            options.Password.RequiredLength = 3;
+
+            // تنظیمات قفل کردن حساب کاربری
+            options.Lockout.DefaultLockoutTimeSpan = TimeSpan.FromMinutes(5);
+            options.Lockout.MaxFailedAccessAttempts = 5;
+
+            // تنظیمات کوکی‌ها و احراز هویت
+            options.SignIn.RequireConfirmedEmail = false;
+        });
+        services.AddScoped<RoleManager<IdentityRole>>();
+        #endregion
+
         return services;
     }
 

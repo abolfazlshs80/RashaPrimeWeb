@@ -1,8 +1,10 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore;
 
 namespace RashaPrimeWeb.Infrastructure.Context
 {
-    public abstract class AuditableDbContext(DbContextOptions options) : DbContext(options)
+    public abstract class AuditableDbContext(DbContextOptions options) : IdentityDbContext<UserApplication, IdentityRole, string>(options)
     {
         public override int SaveChanges()
         {
