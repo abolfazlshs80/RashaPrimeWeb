@@ -2,6 +2,7 @@
 using RashaPrimeWeb.Application.Common;
 using RashaPrimeWeb.Domain.Entities;
 using System;
+using Microsoft.AspNetCore.Identity;
 
 namespace RashaPrimeWeb.Infrastructure.Context;
 
@@ -44,6 +45,35 @@ public class ApplicationDbContext(DbContextOptions<ApplicationDbContext> options
         modelBuilder.Entity<FileToBlog>().HasKey(a => new { a.BlogId, a.ImageId });
         modelBuilder.ApplyConfigurationsFromAssembly(typeof(ApplicationDbContext).Assembly);
         base.OnModelCreating(modelBuilder);
+        // Needed to ensure subclasses share the same table
+        var user = modelBuilder.Entity<UserApplication>()
+            .ToTable("Users");
+
+        // CONSIDER: u.Email is Required if set on options?
+        user.Property(u => u.Email).HasMaxLength(256);
+
+        modelBuilder.Entity<IdentityUserRole<string>>()
+            .ToTable("UserRoles");
+
+        modelBuilder.Entity<IdentityUserLogin<string>>()
+            .ToTable("UserLogins");
+
+        modelBuilder.Entity<IdentityUserClaim<string>>()
+            .ToTable("UserClaims");
+
+        modelBuilder.Entity<IdentityRole>()
+               .ToTable("Roles");
+
+        modelBuilder.Entity<IdentityRoleClaim<string>>()
+            .ToTable("RoleClaims");
+
+        modelBuilder.Entity<IdentityUserToken<string>>()
+            .ToTable("UserTokens");
+
+        modelBuilder.Entity<IdentityRole>()
+         .ToTable("Roles");
+
+        //base.OnModelCreating(modelBuilder);
     }
 }
 
