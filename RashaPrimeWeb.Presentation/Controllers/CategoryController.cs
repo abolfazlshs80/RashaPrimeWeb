@@ -24,28 +24,18 @@ public class CategoryController : BaseController
     [HttpPost]
     public async Task<IActionResult> CreateCategory(CreateCategoryCommand model)
     {
-        //var validator = new CreateCategoryCommandValidator();
-        //var command = model;
-        //var result = validator.Validate(command);
-
-        //if (!result.IsValid)
-        //{
-        //    foreach (var error in result.Errors)
-        //    {
-        //        ModelState.AddModelError("", error.ErrorMessage);
-            
-        //    }
-        //}
+ 
         if (!ModelState.IsValid)
         {
             return View();
         }
   //      model.Name = "test" + new Random().Next(1111, 9999);
         var query = await Mediator.Send(model);
+        if (query.IsError)
+        {
+            return Content("dont created");
+        }
         return Content("created");
     }
 
-    [HttpPost]
-    public async Task<ActionResult<int>> Create(CreateCategoryCommand command)
-       => await Mediator.Send(command);
 }

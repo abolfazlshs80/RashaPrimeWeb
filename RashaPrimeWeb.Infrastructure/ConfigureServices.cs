@@ -10,21 +10,21 @@ using RashaPrimeWeb.Domain.Interface;
 using RashaPrimeWeb.Infrastructure.Context;
 using RashaPrimeWeb.Infrastructure.IdentityModelError;
 using RashaPrimeWeb.Infrastructure.Implement;
+using RashaPrimeWeb.Infrastructure.Implement.Category;
 
 namespace RashaPrimeWeb.Infrastructure;
 
 public static class ConfigureServices
 {
     public static IServiceCollection RegisterInfrastructureServices(this IServiceCollection services, string con_string)
-    {
-        services.AddScoped<IUnitOfWork, UnitOfWork>();
-        services.AddScoped(typeof(IRepository<>), typeof(GenericRepository<>));
-        services.AddScoped<IRepository<Category>, GenericRepository<Category>>();
-        services.AddScoped<ICategoryRepository, DapperCategoryRepository>();
-        services.AddKeyedScoped<ICategoryRepository, DapperCategoryRepository>("Dapper");
-        services.AddKeyedScoped<ICategoryRepository, EfCoreCategoryRepository>("EF");
+    {        //services.AddKeyedScoped<ICategoryRepository, DapperCategoryRepository>("Dapper");
+        //services.AddKeyedScoped<ICategoryRepository, EfCoreCategoryRepository>("EF");
 
         //services.AddScoped<IApplicationDbContext>(provider => provider.GetService<ApplicationDbContext>());
+        services.AddScoped<IUnitOfWork, UnitOfWork>();
+        services.AddScoped(typeof(IRepository<>), typeof(GenericRepository<>));
+        services.AddScoped<ICategoryRepository, DapperCategoryRepository>();
+
         // Add DbContext for EF Core
         services.AddDbContext<ApplicationDbContext>(options =>
             options.UseSqlServer(con_string));
