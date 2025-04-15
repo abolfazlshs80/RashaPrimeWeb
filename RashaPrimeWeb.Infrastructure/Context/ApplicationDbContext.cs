@@ -1,6 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using RashaPrimeWeb.Application.Common;
-using RashaPrimeWeb.DataLayer.Context;
 using RashaPrimeWeb.Domain.Entities;
 using System;
 

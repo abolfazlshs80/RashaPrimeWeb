@@ -5,7 +5,6 @@ namespace RashaPrimeWeb.Domain.Entities
     public class CommentToBlog : BaseDomainEntity
     {
 
-        [AllowHtml]
         public string Text { get; set; }
 
         public string FullName { get; set; }

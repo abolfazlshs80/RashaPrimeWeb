@@ -21,6 +21,6 @@ public class CreateCategoryCommandHandler([FromKeyedServices("Dapper")] ICategor
         //order
         //notifacation
 
-        return Category.CategoryId;
+        return Category.Id;
     }
 }

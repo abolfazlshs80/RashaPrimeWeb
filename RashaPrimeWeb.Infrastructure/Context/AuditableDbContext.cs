@@ -1,8 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 
-using RashaPrimeWeb.Domain.Entities.Common;
-
-namespace RashaPrimeWeb.DataLayer.Context
+namespace RashaPrimeWeb.Infrastructure.Context
 {
     public abstract class AuditableDbContext(DbContextOptions options) : DbContext(options)
     {

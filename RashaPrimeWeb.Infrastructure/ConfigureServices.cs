@@ -1,5 +1,7 @@
-﻿using System.Data;
+﻿using System;
+using System.Data;
 using FluentValidation.AspNetCore;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.Data.SqlClient;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
@@ -18,7 +20,7 @@ public static class ConfigureServices
         services.AddKeyedScoped<ICategoryRepository, DapperCategoryRepository>("Dapper");
         services.AddKeyedScoped<ICategoryRepository, EfCoreCategoryRepository>("EF");
         services.AddKeyedScoped<IUnitOfWork, UnitOfWork>("EF");
-        services.AddScoped<IApplicationDbContext>(provider => provider.GetService<ApplicationDbContext>());
+        //services.AddScoped<IApplicationDbContext>(provider => provider.GetService<ApplicationDbContext>());
         // Add DbContext for EF Core
         services.AddDbContext<ApplicationDbContext>(options =>
             options.UseSqlServer(con_string));
@@ -33,6 +35,8 @@ public static class ConfigureServices
         services.AddFluentValidationAutoValidation(); // اعتبارسنجی خودکار سمت سرور
         services.AddFluentValidationClientsideAdapters(); // اعتبارسنجی سمت کلاینت (اختیاری)
 
+
+    
         return services;
     }
 
