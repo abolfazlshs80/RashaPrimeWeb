@@ -13,23 +13,33 @@ public class CreateCategoryCommandHandler(IUnitOfWork unitOfWork, IMapper mapper
 
     public async Task<int> Handle(CreateCategoryCommand request, CancellationToken cancellationToken = default)
     {
-        var currentRep = unitOfWork.Repository<Domain.Entities.Category>();
-
-        var Category = mapper.Map<Domain.Entities.Category>(request);
-        var GetCategoryById =await currentRep.GetByIdAsync(request.Id,cancellationToken);
-        if (GetCategoryById==null)
+        try
         {
-            await currentRep.AddAsync(Category);
+            var currentRep = unitOfWork.GenericCategoryRepository;
+
+            var Category = mapper.Map<Domain.Entities.Category>(request);
+            var GetCategoryById = await currentRep.GetByIdAsync(request.Id, cancellationToken);
+            if (GetCategoryById == null)
+            {
+                Category.Id =0;
+                await currentRep.AddAsync(Category);
+            }
+            else
+            {
+                await currentRep.UpdateAsync(Category);
+            }
+
+            await unitOfWork.SaveChangesAsync();
+            //order
+            //notifacation
+
+            return Category.Id;
         }
-        else
+        catch (Exception e)
         {
-            await currentRep.UpdateAsync(Category);
+            Console.WriteLine(e);
+            throw;
         }
-
-        await unitOfWork.SaveChangesAsync();
-        //order
-        //notifacation
-
-        return Category.Id;
+ 
     }
 }

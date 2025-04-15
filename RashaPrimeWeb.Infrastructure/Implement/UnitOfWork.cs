@@ -11,27 +11,24 @@ namespace RashaPrimeWeb.Infrastructure.Implement
 {
     public class UnitOfWork(ApplicationDbContext context
         ,ICategoryRepository _categoryRepository
+        , IRepository<Category> _genericCategoryRepository
         ) : IUnitOfWork
     {
-        private readonly Dictionary<Type, object> _repositories;
+     
 
 
         public ICategoryRepository CategoryRepository => _categoryRepository;
+        public IRepository<Category> GenericCategoryRepository => _genericCategoryRepository;
+
+
+
+
 
 
         public IRepository<T> Repository<T>() where T : class
         {
-            if (_repositories.ContainsKey(typeof(T)))
-            {
-                return (IRepository<T>)_repositories[typeof(T)];
-            }
-
-            var repository = new GenericRepository<T>(context);
-            _repositories.Add(typeof(T), repository);
-            return repository;
+            throw new NotImplementedException();
         }
-
-    
 
         public async Task<int> SaveChangesAsync(CancellationToken cancellationToken = default)
         {

@@ -5,7 +5,7 @@ using RashaPrimeWeb.Domain.Interface;
 
 namespace RashaPrimeWeb.Application.Category.Queries.GetUser;
 
-public class GetCategoryQueryHandler([FromKeyedServices("Dapper")] ICategoryRepository repCategory, IMapper mapper)
+public class GetCategoryQueryHandler( ICategoryRepository repCategory, IMapper mapper)
     : IRequestHandler<GetCategoryQuery, GetCategoryDto>
 {
 

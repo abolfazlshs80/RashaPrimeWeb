@@ -11,7 +11,7 @@ namespace RashaPrimeWeb.Domain.Interface
     {
 
         ICategoryRepository CategoryRepository { get; }
-        IRepository<T> Repository<T>() where T : class;
+        IRepository<Category> GenericCategoryRepository { get; }
 
         Task<int> SaveChangesAsync(CancellationToken cancellationToken = default);
     }

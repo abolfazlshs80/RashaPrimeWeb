@@ -17,10 +17,13 @@ public static class ConfigureServices
 {
     public static IServiceCollection RegisterInfrastructureServices(this IServiceCollection services, string con_string)
     {
+        services.AddScoped<IUnitOfWork, UnitOfWork>();
         services.AddScoped(typeof(IRepository<>), typeof(GenericRepository<>));
+        services.AddScoped<IRepository<Category>, GenericRepository<Category>>();
+        services.AddScoped<ICategoryRepository, DapperCategoryRepository>();
         services.AddKeyedScoped<ICategoryRepository, DapperCategoryRepository>("Dapper");
         services.AddKeyedScoped<ICategoryRepository, EfCoreCategoryRepository>("EF");
-        services.AddScoped<IUnitOfWork, UnitOfWork>();
+
         //services.AddScoped<IApplicationDbContext>(provider => provider.GetService<ApplicationDbContext>());
         // Add DbContext for EF Core
         services.AddDbContext<ApplicationDbContext>(options =>

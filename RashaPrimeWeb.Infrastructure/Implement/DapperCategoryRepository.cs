@@ -18,7 +18,7 @@ namespace RashaPrimeWeb.Infrastructure.Implement
 
         public async Task<Category> GetByIdAsync(int id, CancellationToken cancellationToken = default)
         {
-            var sql = "SELECT * FROM Category WHERE CategoryId = @Id";
+            var sql = "SELECT * FROM Category WHERE Id = @Id";
             return await _dbConnection.QueryFirstOrDefaultAsync<Category>(sql, new { Id = id });
         }
 
