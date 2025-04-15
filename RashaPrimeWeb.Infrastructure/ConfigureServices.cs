@@ -8,6 +8,7 @@ using Microsoft.Extensions.DependencyInjection;
 using RashaPrimeWeb.Application.Common;
 using RashaPrimeWeb.Domain.Interface;
 using RashaPrimeWeb.Infrastructure.Context;
+using RashaPrimeWeb.Infrastructure.IdentityModelError;
 using RashaPrimeWeb.Infrastructure.Implement;
 
 namespace RashaPrimeWeb.Infrastructure;
@@ -42,7 +43,9 @@ public static class ConfigureServices
 
         services.AddIdentity<UserApplication, IdentityRole>()
             .AddEntityFrameworkStores<ApplicationDbContext>()
-            .AddDefaultTokenProviders();
+            .AddDefaultTokenProviders()
+            //فارسی سازی ارور 
+            .AddErrorDescriber<CustomIdentityError>();
 
 
         services.Configure<IdentityOptions>(options =>
