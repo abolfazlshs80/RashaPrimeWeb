@@ -4,10 +4,10 @@ using RashaPrimeWeb.Application.Common.Mappings;
 
 namespace RashaPrimeWeb.Application.Category.Commands.CreateUser;
 
-public record CreateCategoryCommand(string Name) : IRequest<int>, IMapFrom<Domain.Entities.Category>
+public record CreateCategoryCommand(int Id,string Name) : IRequest<int>, IMapFrom<Domain.Entities.Category>
 {
 
-    public CreateCategoryCommand() : this("") { }
+    public CreateCategoryCommand() : this(1,"") { }
 
     public void Mapping(Profile profile)
     {

@@ -20,7 +20,7 @@ public static class ConfigureServices
         services.AddScoped(typeof(IRepository<>), typeof(GenericRepository<>));
         services.AddKeyedScoped<ICategoryRepository, DapperCategoryRepository>("Dapper");
         services.AddKeyedScoped<ICategoryRepository, EfCoreCategoryRepository>("EF");
-        services.AddKeyedScoped<IUnitOfWork, UnitOfWork>("EF");
+        services.AddScoped<IUnitOfWork, UnitOfWork>();
         //services.AddScoped<IApplicationDbContext>(provider => provider.GetService<ApplicationDbContext>());
         // Add DbContext for EF Core
         services.AddDbContext<ApplicationDbContext>(options =>

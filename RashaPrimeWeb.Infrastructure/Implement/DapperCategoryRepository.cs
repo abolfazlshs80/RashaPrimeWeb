@@ -33,7 +33,7 @@ namespace RashaPrimeWeb.Infrastructure.Implement
             //var sql = "INSERT INTO Category (Name) VALUES (@Name)";
             //await _dbConnection.ExecuteAsync(sql, entity);
             // پارامترها
-            var parameters =new CreateCategoryCommand(entity.Name);
+            var parameters =new CreateCategoryCommand(entity.Id,entity.Name);
 
             // فراخوانی SP
             int rowsAffected = _dbConnection.Execute(
