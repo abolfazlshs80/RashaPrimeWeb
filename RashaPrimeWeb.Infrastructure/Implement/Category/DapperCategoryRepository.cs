@@ -2,9 +2,9 @@
 using Azure.Core;
 using Dapper;
 using MediatR;
-using RashaPrimeWeb.Application.Category.Commands.CreateUser;
-using RashaPrimeWeb.Application.Category.Queries.GetAllCategory;
+
 using RashaPrimeWeb.Application.Common.Models;
+using RashaPrimeWeb.Application.CQRS.Category.Commands.CreateCateogry;
 using RashaPrimeWeb.Domain.Entities;
 using RashaPrimeWeb.Domain.Interface;
 using static Microsoft.EntityFrameworkCore.DbLoggerCategory.Database;

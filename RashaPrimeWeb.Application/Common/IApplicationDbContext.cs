@@ -20,7 +20,7 @@ public interface IApplicationDbContext
     public DbSet<FileToBlog> FileToBlog { get;}
     public DbSet<FileToNews> FileToNews { get;}
     public DbSet<FileToService> FileToService { get;}
-    public DbSet<Menu> Menu { get;}
+    public DbSet<Domain.Entities.Menu> Menu { get;}
     public DbSet<News> News { get;}
     public DbSet<Service> Service { get;}
     public DbSet<Slider> Slider { get;}

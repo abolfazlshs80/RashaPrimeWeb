@@ -21,9 +21,9 @@ namespace RashaPrimeWeb.Infrastructure.Implement
             return await _dbSet.FindAsync(new object[] { id }, cancellationToken);
         }
 
-        public async Task<IEnumerable<T>> GetAllAsync(CancellationToken cancellationToken = default)
+        public async Task<IQueryable<T>> GetAllAsync(CancellationToken cancellationToken = default)
         {
-            return await _dbSet.ToListAsync(cancellationToken);
+            return  _dbSet.AsQueryable();
         }
 
         public async Task AddAsync(T entity, CancellationToken cancellationToken = default)

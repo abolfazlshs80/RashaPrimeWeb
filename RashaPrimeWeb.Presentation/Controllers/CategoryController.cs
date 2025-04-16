@@ -1,10 +1,11 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using MsaterResumeIR.Presentation.Controllers;
 
-using RashaPrimeWeb.Application.Category.Commands.CreateUser;
-using RashaPrimeWeb.Application.Category.Queries.GetAllCategory;
-using RashaPrimeWeb.Application.Category.Queries.GetUser;
+using RashaPrimeWeb.Application.CQRS.Category.Commands.CreateCateogry;
+using RashaPrimeWeb.Application.CQRS.Category.Queries.GetAllCategory;
+using RashaPrimeWeb.Application.CQRS.Category.Queries.GetCategory;
 
-namespace MsaterResumeIR.Presentation.Controllers;
+namespace RashaPrimeWeb.Presentation.Controllers;
 
 public class CategoryController : BaseController
 {
