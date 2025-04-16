@@ -20,7 +20,7 @@ namespace RashaPrimeWeb.Infrastructure.Implement
         {
             this._categoryRepository = _categoryRepository;
             this._context = context;
-           this. _repositories = new Dictionary<Type, object>();
+            this._repositories = new Dictionary<Type, object>();
         }
 
         public ICategoryRepository CategoryRepository => _categoryRepository;

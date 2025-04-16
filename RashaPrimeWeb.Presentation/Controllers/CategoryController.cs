@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 
 using RashaPrimeWeb.Application.Category.Commands.CreateUser;
+using RashaPrimeWeb.Application.Category.Queries.GetAllCategory;
 using RashaPrimeWeb.Application.Category.Queries.GetUser;
 
 namespace MsaterResumeIR.Presentation.Controllers;
@@ -10,11 +11,11 @@ public class CategoryController : BaseController
     [HttpGet]
     public async Task<ActionResult<GetCategoryDto>> GetCategory()
     {
-        GetCategoryQuery query=new GetCategoryQuery (2);
+        var query=new GetAllCategoryQuery ("11111", false,2,2);
         var model = await Mediator.Send(query);
       
         
-        return Content(model.Name);
+        return Content("completed");
     }
     [HttpGet]
     public IActionResult CreateCategory()
