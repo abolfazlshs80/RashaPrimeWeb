@@ -18,10 +18,10 @@ public class CreateCategoryCommandHandler(IUnitOfWork unitOfWork, IMapper mapper
             var currentRep = unitOfWork.Repository<Domain.Entities.Category>();
 
             var Category = mapper.Map<Domain.Entities.Category>(request);
-            var GetCategoryById = await currentRep.GetByIdAsync(request.Id, cancellationToken);
-            if (GetCategoryById == null)
+         
+            if (Category.Id == 0)
             {
-                Category.Id = 0;
+      
                 await currentRep.AddAsync(Category);
             }
             else
