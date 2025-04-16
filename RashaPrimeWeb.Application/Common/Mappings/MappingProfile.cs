@@ -1,5 +1,6 @@
 ﻿using System.Reflection;
 using AutoMapper;
+using RashaPrimeWeb.Application.CQRS.Menu.Queries.GetAllMenu;
 
 namespace RashaPrimeWeb.Application.Common.Mappings
 {
@@ -7,6 +8,7 @@ namespace RashaPrimeWeb.Application.Common.Mappings
     {
         public MappingProfile()
         {
+
             ApplyMappingsFromAssembly(Assembly.GetExecutingAssembly());
         }
 

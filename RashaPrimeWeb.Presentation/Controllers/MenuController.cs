@@ -12,11 +12,12 @@ public class MenuController : BaseController
     [HttpGet]
     public async Task<ActionResult<GetMenuDto>> GetMenu()
     {
-        var query=new GetAllMenuQuery ("11111", false,2,2);
+        var query=new GetAllMenuQuery (null, false,1,8);
+      //  var query=new GetMenuQuery (2);
         var model = await Mediator.Send(query);
       
         
-        return Content("completed");
+        return Content("");
     }
     [HttpGet]
     public IActionResult Create()
@@ -42,7 +43,7 @@ public class MenuController : BaseController
         //    return View();
         //}
         //      model.Name = "test" + new Random().Next(1111, 9999);
-       // var query = await Mediator.Send(model);
+       var query = await Mediator.Send(model);
       //  var query = await Mediator.Send(new DeleteMenuCommand{Id = 1});
         if (query.IsError)
         {
