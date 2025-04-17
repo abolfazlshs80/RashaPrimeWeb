@@ -9,7 +9,7 @@
         //public string? Owner { get; set; }
         //public DateTime? LastModifiedDate { get; set; }
         //public string? LastModifiedBy { get; set; }
-        public bool Status { get; set; } = true; 
-        public bool IsDeleted { get; set; } = true;
+        public bool Status { get; set; } = false; 
+        public bool IsDeleted { get; set; } = false;
     }
 }
