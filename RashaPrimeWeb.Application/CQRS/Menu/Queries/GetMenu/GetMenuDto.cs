@@ -3,7 +3,7 @@ using RashaPrimeWeb.Application.Common.Mappings;
 
 namespace RashaPrimeWeb.Application.CQRS.Menu.Queries.GetMenu;
 
-public record GetMenuDto : IMapFrom<Domain.Entities.Menu>
+public record GetMenuDto 
 {
     public bool StatusInUserFooterMenu { get; set; }
     public string Title { get; set; }
@@ -21,9 +21,5 @@ public record GetMenuDto : IMapFrom<Domain.Entities.Menu>
     public string ControllerName { get; set; }
 
     public int? Lang_Id { get; set; }
-    public void Mapping(Profile profile)
-    {
-        profile.CreateMap<Domain.Entities.Menu, GetMenuDto>()
-          .ReverseMap();
-    }
+ 
 }

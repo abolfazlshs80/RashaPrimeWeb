@@ -13,8 +13,8 @@ public class MenuController : BaseController
     [HttpGet]
     public async Task<ActionResult<GetMenuDto>> GetMenu()
     {
-     //   var query=new GetAllMenuQuery (null, false,1,8);
-       var query=new GetMenuQuery (2);
+       var query=new GetAllMenuQuery (null, false,1,8);
+      // var query=new GetMenuQuery (2);
         var model = await Mediator.Send(query);
       
         

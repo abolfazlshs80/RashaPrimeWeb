@@ -21,15 +21,24 @@ namespace RashaPrimeWeb.Infrastructure.Implement
         {
             return await _dbSet.FindAsync(new object[] { id }, cancellationToken);
         }
-        public IQueryable<T> GetAllWithIncludes(Func<IQueryable<T>, IQueryable<T>> includeFunc)
+        public IQueryable<T> GetAllWithIncludes(
+            Func<IQueryable<T>, IQueryable<T>> includeFunc = null,
+            Expression<Func<T, bool>> filter = null)
         {
+            // شروع کوئری با DbSet
             IQueryable<T> query = _dbSet;
 
+            // اعمال شرط‌ها (اگر وجود داشته باشند)
+            if (filter != null)
+            {
+                query = query.Where(filter);
+            }
+
+            // اعمال Includes (اگر وجود داشته باشند)
             if (includeFunc != null)
             {
                 query = includeFunc(query);
             }
-
 
             return query;
         }

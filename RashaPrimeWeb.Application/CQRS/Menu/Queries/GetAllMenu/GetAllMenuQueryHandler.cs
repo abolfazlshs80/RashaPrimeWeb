@@ -3,7 +3,6 @@ using MediatR;
 using Microsoft.EntityFrameworkCore;
 
 using RashaPrimeWeb.Application.Common.Models;
-
 using RashaPrimeWeb.Domain.Interface;
 
 namespace RashaPrimeWeb.Application.CQRS.Menu.Queries.GetAllMenu;
@@ -36,17 +35,35 @@ public class GetAllMenuQueryHandler(IUnitOfWork unitOfWork, IMapper mapper)
 
         // صفحه‌بندی
         var items = await query
+          
             .Skip((request.PageNumber - 1) * request.PageSize)
             .Take(request.PageSize)
+            . Select(LastMenu => new GetAllMenuDto
+            {
+                StatusInUserFooterMenu = LastMenu.StatusInUserFooterMenu,
+                Title = LastMenu.Title,
+                Href = LastMenu.Href,
+                Order = LastMenu.Order,
+                StatusInFooter = LastMenu.StatusInFooter,
+                StatusInMainMenu = LastMenu.StatusInMainMenu,
+                StatusInUserMenu = LastMenu.StatusInUserMenu,
+                StatusInAdminMenu = LastMenu.StatusInAdminMenu,
+                RoleName = LastMenu.RoleName,
+                Icons = LastMenu.Icons,
+                ControllerName = LastMenu.ControllerName,
+                Lang_Id = LastMenu.Lang_Id,
+            })
             .ToListAsync(cancellationToken);
 
         // مپ کردن داده‌ها به GetAllCategoryDto
-        var mappedItems = mapper.Map<List<GetAllMenuDto>>(items);
+       // var mappedItems = mapper.Map<List<GetAllMenuDto>>(items);
+   
+
 
         // بازگرداندن نتیجه
         return new PaginatedResult<GetAllMenuDto>
         {
-            Items = mappedItems,
+            Items = items,
             PageNumber = request.PageNumber,
             PageSize = request.PageSize,
             TotalItems = totalItems

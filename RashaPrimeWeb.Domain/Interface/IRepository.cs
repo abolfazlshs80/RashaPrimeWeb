@@ -9,6 +9,8 @@ namespace RashaPrimeWeb.Domain.Interface
         Task AddAsync(T entity, CancellationToken cancellationToken = default);
         Task UpdateAsync(T entity, CancellationToken cancellationToken = default);
         Task DeleteAsync(int id, CancellationToken cancellationToken = default);
-        public IQueryable<T> GetAllWithIncludes(Func<IQueryable<T>, IQueryable<T>> includeFunc);
+        public IQueryable<T> GetAllWithIncludes(
+            Func<IQueryable<T>, IQueryable<T>> includeFunc = null,
+            Expression<Func<T, bool>> filter = null);
     }
 }
