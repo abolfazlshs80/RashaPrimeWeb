@@ -4,6 +4,7 @@ namespace RashaPrimeWeb.Domain.Entities
 {
     public class Menu : BaseDomainEntity
     {
+     
         public bool StatusInUserFooterMenu { get; set; }
         public string Title { get; set; }
         public string Href { get; set; }

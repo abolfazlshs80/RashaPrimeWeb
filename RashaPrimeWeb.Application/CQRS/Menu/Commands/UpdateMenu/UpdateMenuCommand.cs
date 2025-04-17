@@ -4,7 +4,7 @@ using RashaPrimeWeb.Application.Common.Mappings;
 
 namespace RashaPrimeWeb.Application.CQRS.Menu.Commands.UpdateMenu;
 
-public record UpdateMenuCommand : IRequest<ErrorOr<int>>, IMapFrom<Domain.Entities.Menu>
+public record UpdateMenuCommand : IRequest<ErrorOr<int>>
 {
 
     public bool StatusInUserFooterMenu { get; set; }
@@ -23,9 +23,6 @@ public record UpdateMenuCommand : IRequest<ErrorOr<int>>, IMapFrom<Domain.Entiti
     public string Icons { get; set; }
     public string ControllerName { get; set; }
 
-    public void Mapping(Profile profile)
-    {
-        profile.CreateMap<Domain.Entities.Menu, UpdateMenuCommand>()
-            .ReverseMap();
-    }
+    public int? Lang_Id { get; set; }
+
 }

@@ -26,9 +26,9 @@ public class MenuController : BaseController
         return View();
     }
     [HttpPost]
-    public async Task<IActionResult> Create(UpdateMenuCommand model)
+    public async Task<IActionResult> Create(CreateMenuCommand model)
     {
-        model.Id = 8;
+        //model.Id = 8;
         model.ControllerName = model.Title;
         model.Href = model.Title;
         model.Icons = model.Title;

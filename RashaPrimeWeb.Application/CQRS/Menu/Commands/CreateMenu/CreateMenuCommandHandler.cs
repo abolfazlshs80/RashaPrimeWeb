@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
 using MediatR;
 using RashaPrimeWeb.Domain.Interface;
+using static Microsoft.EntityFrameworkCore.DbLoggerCategory.Database;
 
 namespace RashaPrimeWeb.Application.CQRS.Menu.Commands.CreateMenu;
 //[FromKeyedServices("EF")] IMenuRepository repMenu
@@ -15,11 +16,25 @@ public class CreateMenuCommandHandler(IUnitOfWork unitOfWork, IMapper mapper)
         {
             var currentRep = unitOfWork.Repository<Domain.Entities.Menu>();
 
-            var Menu = mapper.Map<Domain.Entities.Menu>(request);
-            
-              
-                await currentRep.AddAsync(Menu);
-        
+            var Menu = new Domain.Entities.Menu()
+            {
+                StatusInUserFooterMenu = request.StatusInUserFooterMenu,
+                Title = request.Title,
+                Href = request.Href,
+                Order = request.Order,
+                StatusInFooter = request.StatusInFooter,
+                StatusInMainMenu = request.StatusInMainMenu,
+                StatusInUserMenu = request.StatusInUserMenu,
+                StatusInAdminMenu = request.StatusInAdminMenu,
+                RoleName = request.RoleName,
+                Icons = request.Icons,
+                ControllerName = request.ControllerName,
+                Lang_Id = request.Lang_Id,
+            };
+
+
+            await currentRep.AddAsync(Menu);
+
             await unitOfWork.SaveChangesAsync();
             //order
 

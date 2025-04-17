@@ -15,7 +15,22 @@ public class UpdateMenuCommandHandler(IUnitOfWork unitOfWork, IMapper mapper)
         {
             var currentRep = unitOfWork.Repository<Domain.Entities.Menu>();
 
-            var Menu = mapper.Map<Domain.Entities.Menu>(request);
+            var Menu = await currentRep.GetByIdAsync(request.Id);
+
+            Menu.StatusInUserFooterMenu = request.StatusInUserFooterMenu;
+            Menu.Title = request.Title;
+            Menu.Href = request.Href;
+            Menu.Order = request.Order;
+            Menu.StatusInFooter = request.StatusInFooter;
+            Menu.StatusInMainMenu = request.StatusInMainMenu;
+            Menu.StatusInUserMenu = request.StatusInUserMenu;
+            Menu.StatusInAdminMenu = request.StatusInAdminMenu;
+            Menu.RoleName = request.RoleName;
+            Menu.Icons = request.Icons;
+            Menu.ControllerName = request.ControllerName;
+            Menu.Lang_Id = request.Lang_Id;
+
+
 
 
 
