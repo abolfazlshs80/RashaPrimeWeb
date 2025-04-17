@@ -2,6 +2,7 @@
 using MsaterResumeIR.Presentation.Controllers;
 using RashaPrimeWeb.Application.CQRS.Menu.Commands.CreateMenu;
 using RashaPrimeWeb.Application.CQRS.Menu.Commands.DeleteMenu;
+using RashaPrimeWeb.Application.CQRS.Menu.Commands.UpdateMenu;
 using RashaPrimeWeb.Application.CQRS.Menu.Queries.GetAllMenu;
 using RashaPrimeWeb.Application.CQRS.Menu.Queries.GetMenu;
 
@@ -12,8 +13,8 @@ public class MenuController : BaseController
     [HttpGet]
     public async Task<ActionResult<GetMenuDto>> GetMenu()
     {
-        var query=new GetAllMenuQuery (null, false,1,8);
-      //  var query=new GetMenuQuery (2);
+     //   var query=new GetAllMenuQuery (null, false,1,8);
+       var query=new GetMenuQuery (2);
         var model = await Mediator.Send(query);
       
         
@@ -25,9 +26,9 @@ public class MenuController : BaseController
         return View();
     }
     [HttpPost]
-    public async Task<IActionResult> Create(CreateMenuCommand model)
+    public async Task<IActionResult> Create(UpdateMenuCommand model)
     {
-        model.Id = 0;
+        model.Id = 8;
         model.ControllerName = model.Title;
         model.Href = model.Title;
         model.Icons = model.Title;

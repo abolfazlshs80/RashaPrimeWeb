@@ -1,6 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using RashaPrimeWeb.Domain.Interface;
 using RashaPrimeWeb.Infrastructure.Context;
+using System.Linq.Expressions;
 
 namespace RashaPrimeWeb.Infrastructure.Implement
 {
@@ -20,7 +21,18 @@ namespace RashaPrimeWeb.Infrastructure.Implement
         {
             return await _dbSet.FindAsync(new object[] { id }, cancellationToken);
         }
+        public IQueryable<T> GetAllWithIncludes(Func<IQueryable<T>, IQueryable<T>> includeFunc)
+        {
+            IQueryable<T> query = _dbSet;
 
+            if (includeFunc != null)
+            {
+                query = includeFunc(query);
+            }
+
+
+            return query;
+        }
         public async Task<IQueryable<T>> GetAllAsync(CancellationToken cancellationToken = default)
         {
             return  _dbSet.AsQueryable();

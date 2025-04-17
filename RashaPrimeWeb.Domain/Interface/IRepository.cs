@@ -1,4 +1,6 @@
-﻿namespace RashaPrimeWeb.Domain.Interface
+﻿using System.Linq.Expressions;
+
+namespace RashaPrimeWeb.Domain.Interface
 {
     public interface IRepository<T> where T : class
     {
@@ -7,5 +9,6 @@
         Task AddAsync(T entity, CancellationToken cancellationToken = default);
         Task UpdateAsync(T entity, CancellationToken cancellationToken = default);
         Task DeleteAsync(int id, CancellationToken cancellationToken = default);
+        public IQueryable<T> GetAllWithIncludes(Func<IQueryable<T>, IQueryable<T>> includeFunc);
     }
 }
