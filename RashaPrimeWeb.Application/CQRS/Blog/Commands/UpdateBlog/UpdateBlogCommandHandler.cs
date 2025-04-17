@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
 using MediatR;
 using RashaPrimeWeb.Domain.Interface;
+using static System.Net.Mime.MediaTypeNames;
 
 namespace RashaPrimeWeb.Application.CQRS.Blog.Commands.UpdateBlog;
 //[FromKeyedServices("EF")] IBlogRepository repBlog
@@ -24,6 +25,7 @@ public class UpdateBlogCommandHandler(IUnitOfWork unitOfWork, IMapper mapper)
             Blog.LongTitle = request.LongTitle;
             Blog.ShortTitle = request.ShortTitle;
             Blog.Lang_Id = request.Lang_Id;
+            Blog.Text = request.Text;
             Blog.Seen = request.Seen;
 
 

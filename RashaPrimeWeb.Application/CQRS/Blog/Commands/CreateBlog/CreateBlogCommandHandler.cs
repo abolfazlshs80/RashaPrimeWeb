@@ -20,10 +20,12 @@ public class CreateBlogCommandHandler(IUnitOfWork unitOfWork, IMapper mapper)
                 TitleBrowser = request.TitleBrowser,
                 LinkKey = request.LinkKey,
                 LongTitle = request.LongTitle,
+                Text = request.Text,
                 ShortTitle = request.ShortTitle,
                 Lang_Id = request.Lang_Id,
                 Seen = request.Seen,
-         
+                //IsDeleted = false,
+                //Status = true
             };
 
 
