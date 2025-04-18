@@ -29,7 +29,6 @@
 
 	<ItemGroup>
 	  <Folder Include="Models\Identity\" />
-	  <Folder Include="Models\Infrastructure\" />
 	  <Folder Include="Contracts\Identity\" />
 	  <Folder Include="Contracts\Infrastructure\" />
 	  <Folder Include="Service\NewFolder\" />
