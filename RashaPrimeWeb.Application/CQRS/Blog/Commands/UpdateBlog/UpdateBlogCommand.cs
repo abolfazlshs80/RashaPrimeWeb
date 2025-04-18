@@ -1,5 +1,5 @@
 ﻿using MediatR;
-using RashaPrimeWeb.Application.Common.Models;
+using RashaPrimeWeb.Application.Models.Models;
 
 namespace RashaPrimeWeb.Application.CQRS.Blog.Commands.UpdateBlog;
 

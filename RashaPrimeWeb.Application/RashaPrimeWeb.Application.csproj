@@ -29,7 +29,7 @@
 
 
 	<ItemGroup>
+	  <Folder Include="Common\Interfaces\" />
 	  <Folder Include="Contracts\Identity\" />
-	  <Folder Include="Contracts\Infrastructure\" />
 	</ItemGroup>
 </Project>

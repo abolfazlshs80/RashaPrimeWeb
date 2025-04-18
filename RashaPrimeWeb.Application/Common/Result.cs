@@ -1,6 +1,6 @@
 ﻿namespace RashaPrimeWeb.Application.Common;
 
-public class Result
+public class ResultDto
 {
     public bool IsSuccess { get; init; }
     public bool IsFailure
@@ -8,19 +8,19 @@ public class Result
 
     public string Message { get; init; }
 
-    public Result()
+    public ResultDto()
       => IsSuccess = true;
 
-    public Result(string message)
+    public ResultDto(string message)
     {
         IsSuccess = false;
         Message = message;
     }
 
 
-    public static Result Failure(string msg)
+    public static ResultDto Failure(string msg)
          => new(msg);
 
-    public static Result Success()
+    public static ResultDto Success()
         => new();
 }

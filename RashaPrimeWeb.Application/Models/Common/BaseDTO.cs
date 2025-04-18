@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace RashaPrimeWeb.Application.Common.Models
+namespace RashaPrimeWeb.Application.Models.Models
 {
     public record BaseDTO
     {
