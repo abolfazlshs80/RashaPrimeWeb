@@ -14,6 +14,7 @@
 
 	<ItemGroup>
 		<PackageReference Include="ErrorOr" Version="2.0.1" />
+		<PackageReference Include="Microsoft.AspNetCore.Http.Features" Version="5.0.17" />
 		<PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="8.0.0" />
 		<PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="8.0.0" />
 		<PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="8.0.0" />
@@ -27,7 +28,10 @@
 
 
 	<ItemGroup>
-	  <Folder Include="Service\Interface\" />
-	  <Folder Include="Service\Implement\" />
+	  <Folder Include="Models\Identity\" />
+	  <Folder Include="Models\Infrastructure\" />
+	  <Folder Include="Contracts\Identity\" />
+	  <Folder Include="Contracts\Infrastructure\" />
+	  <Folder Include="Service\NewFolder\" />
 	</ItemGroup>
 </Project>
