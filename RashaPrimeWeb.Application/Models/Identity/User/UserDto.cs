@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace Pr_Signal_ir.Application.Models.Identity
+﻿namespace RashaPrimeWeb.Application.Models.Identity.User
 {
     public class UserDto
     {

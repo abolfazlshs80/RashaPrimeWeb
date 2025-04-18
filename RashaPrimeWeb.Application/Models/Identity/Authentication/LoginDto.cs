@@ -1,8 +1,8 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
-namespace OurResumeIR.Application.ViewModels.Account
+namespace RashaPrimeWeb.Application.Models.Identity.Authentication
 {
-    public class LoginViewModel
+    public class LoginDto
     {
 
         [EmailAddress]

@@ -30,7 +30,5 @@
 	<ItemGroup>
 	  <Folder Include="Contracts\Identity\" />
 	  <Folder Include="Contracts\Infrastructure\" />
-	  <Folder Include="Models\Identity\Authentication\" />
-	  <Folder Include="Service\NewFolder\" />
 	</ItemGroup>
 </Project>

@@ -1,8 +1,8 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
-namespace OurResumeIR.Application.ViewModels.Account
+namespace RashaPrimeWeb.Application.Models.Identity.Authentication
 {
-    public class RegisterViewModel
+    public class RegisterDto
     {
         [Required(ErrorMessage = "ایمیل را وارد کنید")]
         [StringLength(70, ErrorMessage = "ایمیل بین 5 تا 30 کارکتر باید باشد", MinimumLength = 5)]
