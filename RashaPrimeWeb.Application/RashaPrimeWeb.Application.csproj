@@ -30,6 +30,5 @@
 
 	<ItemGroup>
 	  <Folder Include="Common\Interfaces\" />
-	  <Folder Include="Contracts\Identity\" />
 	</ItemGroup>
 </Project>
