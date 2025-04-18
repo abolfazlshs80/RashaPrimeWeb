@@ -1,14 +1,9 @@
-﻿
-using Pr_Signal_ir.Application.Models;
-using System;
-using System.Collections.Generic;
-using System.Text;
-using System.Threading.Tasks;
+﻿using RashaPrimeWeb.Application.Models.Infrastructure;
 
-namespace Pr_Signal_ir.Application.Contracts.Infrastructure
+namespace RashaPrimeWeb.Application.Contracts.Infrastructure
 {
     public interface IEmailSender
     {
-        Task<bool> SendEmail(Email email);
+        Task<ErrorOr<bool>> SendEmail(Email email);
     }
 }
