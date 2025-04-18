@@ -8,6 +8,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\RashaPrimeWeb.Domain\RashaPrimeWeb.Domain.csproj" />
+    <ProjectReference Include="..\SharedUtilities\SharedUtilities.csproj" />
   </ItemGroup>
 
 

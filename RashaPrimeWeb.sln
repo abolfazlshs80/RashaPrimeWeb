@@ -15,6 +15,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RashaPrimeWeb.Infrastructur
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RashaPrimeWeb.Presentation", "RashaPrimeWeb.Presentation\RashaPrimeWeb.Presentation.csproj", "{C1D003A5-8107-48D2-9325-7BC1979B62EA}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SharedUtilities", "SharedUtilities\SharedUtilities.csproj", "{34802451-8584-4AA8-9B57-56453760C9BB}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -37,6 +39,10 @@ Global
 		{C1D003A5-8107-48D2-9325-7BC1979B62EA}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{C1D003A5-8107-48D2-9325-7BC1979B62EA}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{C1D003A5-8107-48D2-9325-7BC1979B62EA}.Release|Any CPU.Build.0 = Release|Any CPU
+		{34802451-8584-4AA8-9B57-56453760C9BB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{34802451-8584-4AA8-9B57-56453760C9BB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{34802451-8584-4AA8-9B57-56453760C9BB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{34802451-8584-4AA8-9B57-56453760C9BB}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -47,5 +53,6 @@ Global
 		{ED8FCF7D-5A38-4CA2-A2C6-87124C7EE3A8} = {AE323E0A-8159-47E0-9534-37D8D091B054}
 		{74E61A11-3987-4F37-8714-23028FB3E1D1} = {AE323E0A-8159-47E0-9534-37D8D091B054}
 		{C1D003A5-8107-48D2-9325-7BC1979B62EA} = {AE323E0A-8159-47E0-9534-37D8D091B054}
+		{34802451-8584-4AA8-9B57-56453760C9BB} = {AE323E0A-8159-47E0-9534-37D8D091B054}
 	EndGlobalSection
 EndGlobal
