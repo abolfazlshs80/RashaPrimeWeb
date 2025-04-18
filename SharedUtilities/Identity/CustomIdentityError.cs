@@ -1,8 +1,8 @@
 ﻿using Microsoft.AspNetCore.Identity;
 
-namespace RashaPrimeWeb.Application.Common.Identity.IdentityModelError
+namespace SharedUtilities.Identity
 {
-    public class CustomIdentityError: IdentityErrorDescriber
+    public class CustomIdentityError : IdentityErrorDescriber
     {
         public override IdentityError DefaultError()
         {

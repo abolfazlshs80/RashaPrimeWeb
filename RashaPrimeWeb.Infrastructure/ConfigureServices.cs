@@ -6,9 +6,9 @@ using Microsoft.Data.SqlClient;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 using RashaPrimeWeb.Application.Common;
+using RashaPrimeWeb.Application.Common.Identity.IdentityModelError;
 using RashaPrimeWeb.Domain.Interface;
 using RashaPrimeWeb.Infrastructure.Context;
-using RashaPrimeWeb.Infrastructure.IdentityModelError;
 using RashaPrimeWeb.Infrastructure.Implement;
 using RashaPrimeWeb.Infrastructure.Implement.Category;
 
