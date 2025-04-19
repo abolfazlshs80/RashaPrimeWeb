@@ -1,10 +1,10 @@
-﻿using Microsoft.AspNetCore.Identity;
+﻿using ErrorOr;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
-using ErrorOr;
 using RashaPrimeWeb.Application.Contracts.Identity;
 using RashaPrimeWeb.Application.Models.Identity.Role;
 
-namespace Pr_Signal_ir.Identity.Services
+namespace RashaPrimeWeb.Infrastructure.Implement
 {
     public class RoleService : IRoleService
     {
