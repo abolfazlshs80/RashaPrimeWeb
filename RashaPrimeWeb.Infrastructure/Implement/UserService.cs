@@ -30,8 +30,8 @@ namespace RashaPrimeWeb.Infrastructure.Implement
                 return new UserDto
                 {
                     Email = user.Email,
-                    Firstname = user.Name,
-                    Lastname=user.Family,
+                    Firstname = user.FirstName,
+                    Lastname=user.LastName,
                     IsAdmin =false,
                     Username= user.UserName,
                     PhoneNumber=user.PhoneNumber,
@@ -67,8 +67,8 @@ namespace RashaPrimeWeb.Infrastructure.Implement
             {
                 Email = User.Email,
                 Id = User.Id,
-                Firstname = User.Name,
-                Lastname = User.Family,
+                Firstname = User.FirstName,
+                Lastname = User.LastName,
                 PhoneNumber= User.PhoneNumber,
                 Username=User.UserName,
             };
@@ -81,8 +81,8 @@ namespace RashaPrimeWeb.Infrastructure.Implement
             {
                 Id = q.Id,
                 Email = q.Email,
-                Firstname = q.Name,
-                Lastname = q.Family,
+                Firstname = q.FirstName,
+                Lastname = q.LastName,
                 Username=q.UserName,
                 PhoneNumber=q.PhoneNumber
 
@@ -97,8 +97,8 @@ namespace RashaPrimeWeb.Infrastructure.Implement
           
             if (User != null)
             {
-                User.Name = model.Firstname!;
-                User.Family = model.Lastname!;
+                User.FirstName = model.Firstname!;
+                User.LastName = model.Lastname!;
                 User.UserName = model.Username;
                 //User. = model.IsTeacher;
                 await _userManager.UpdateAsync(User);

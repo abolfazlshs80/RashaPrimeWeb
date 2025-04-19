@@ -120,7 +120,7 @@ namespace RashaPrimeWeb.Infrastructure.Implement
                     RoleId = item.Id,
                     UserId = id,
                     RoleName = item.Name,
-                    Selected = (await IsInRole(new AddRoleToUserDto() { RoleId = item.Id, UserId = id })).Status.Value
+                    Selected = (await IsInRole(new AddRoleToUserDto() { RoleId = item.Id, UserId = id })).Value
                 });
             }
             return list;

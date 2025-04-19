@@ -5,10 +5,9 @@ namespace RashaPrimeWeb.Domain.Entities
 {
     public class UserApplication:IdentityUser
     {
-        public string Name { get; set; }
+        public string FirstName { get; set; }
     
-        public string Family { get; set; }
-        
-        public string City { get; set; }
+        public string LastName { get; set; }
+
     }
 }
