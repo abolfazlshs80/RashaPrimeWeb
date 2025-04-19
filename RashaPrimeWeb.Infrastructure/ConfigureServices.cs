@@ -6,7 +6,7 @@ using Microsoft.Data.SqlClient;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 using RashaPrimeWeb.Application.Common;
-
+using RashaPrimeWeb.Application.Contracts.Identity;
 using RashaPrimeWeb.Domain.Interface;
 using RashaPrimeWeb.Infrastructure.Context;
 using RashaPrimeWeb.Infrastructure.Implement;
@@ -25,6 +25,9 @@ public static class ConfigureServices
         services.AddScoped<IUnitOfWork, UnitOfWork>();
         services.AddScoped(typeof(IRepository<>), typeof(GenericRepository<>));
         services.AddScoped<ICategoryRepository, DapperCategoryRepository>();
+        services.AddScoped<IUserService, UserService>();
+        services.AddScoped<IRoleService, RoleService>();
+        services.AddScoped<IAuthService, AuthService>();
 
         // Add DbContext for EF Core
         services.AddDbContext<ApplicationDbContext>(options =>
