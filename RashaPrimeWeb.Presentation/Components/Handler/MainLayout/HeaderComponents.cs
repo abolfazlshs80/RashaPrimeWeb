@@ -1,34 +1,28 @@
 ﻿using AutoMapper;
+using MediatR;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.CodeAnalysis.Host;
 using Microsoft.Extensions.Localization;
+using RashaPrimeWeb.Application.CQRS.Menu.Queries.GetAllMenu;
+using RashaPrimeWeb.Application.CQRS.Setting.Queries.GetSetting;
+using RashaPrimeWeb.Domain.Entities;
 
 
 namespace RashaPrimeWeb.WEB.Components.Main
 {
-    public class HeaderComponents : ViewComponent
+    public class HeaderComponents(IMediator mediator) : ViewComponent
     {
-      //  private readonly IStringLocalizer _localizer;
-        //private readonly IMenuService _menuService;
-        //private readonly ITagService _tagService;
-        //private readonly ICategoryService _categoryService;
-        //private readonly IBlogService _blogService;
-        //private readonly INewsService _newsService;
-        //private readonly IServiceService _serviceService;
-        //private readonly ISettingService _SettingService;
-        //private readonly ILanguagesService _languageService;
-
-        //private readonly IMapper _mapper;
-
-        //public HeaderComponents()
-        //{
-        
-        //}
+      
       
         public async Task<IViewComponentResult> InvokeAsync()
         {
-            //var Header = new HeaderVM();
-            //Header.Setting = await _SettingService.GetCurrentSettingActive();
+            var queryMenu = new GetAllMenuQuery (null,false,1,10);
+            var querySetting = new GetSettingQuery ();
+            var Menu = await mediator.Send(queryMenu);
+            var Setting = await mediator.Send(querySetting);
+            var Header = new HeaderVM();
+            Header.Setting = Setting;
+            Header.Menu = Menu;
             //Header.Menu = await _menuService.GetMenuForHeaderActive();
             //Header.Categories = await _categoryService.GetCategoryForHeaderActive();
             //Header.Blogs = await _blogService.GetBlogForHeaderActive();
@@ -36,7 +30,7 @@ namespace RashaPrimeWeb.WEB.Components.Main
             //Header.Service = await _serviceService.GetServiceForHeaderActive();
             //Header.Tag = await _tagService.GetTagForHeaderActive();
             //Header.Languages = await _languageService.GetLanguagesLast();
-            return View("/Components/Views/MainLayout/Header.cshtml");
+            return View("/Components/Views/MainLayout/Header.cshtml",Header);
         }
 
     }
