@@ -1,0 +1,118 @@
+﻿@* @using RashaPrimeWeb.DataLayer.MVC.Models.Category *@
+@using Microsoft.AspNetCore.Mvc.Localization
+@* @model FooterVM *@
+@* 
+@inject IViewLocalizer Localizer *@
+<!--=====Footer start=======-->
+<footer class="footer-area footer-area10 padding-top footer-4">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-4 col-sm-6">
+                <div class="single-footer mr50">
+                    <a class="footer-logo" href="/">
+                        <img alt="" src="/MainTemplate/consultia/Fa/assets/img/logo/footer-logo10.svg" />
+                    </a>
+                    <div class="space20"></div>
+	              @*   <p>@(Model.Setting.FotterDesc)</p> *@
+                    <div class="space10"></div>
+                    <div class="social social3">
+                   @*      <ul>
+                            <li>
+                                <a data-bs-toggle="tooltip"
+                                   href="@Model.Setting.WhatappNumber"
+                                   title="@Localizer["whatsapp"]">
+                                    <i class="fa-brands fa-whatsapp"></i>
+                                </a>
+                            </li>
+                       
+                            <li>
+                                <a data-bs-toggle="tooltip"
+                                   href="@Model.Setting.InstagramUserName"
+                                   title="@Localizer["instagram"]">
+                                    <i class="fa-brands fa-instagram"></i>
+                                </a>
+                            </li>
+                     
+                        </ul> *@
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg col-sm-6">
+                <div class="single-footer">
+                 @*    <h3>@Localizer["PageTitle"]</h3>
+                    <div class="footer-menu">
+	                    <ul>
+                            
+                            @foreach (var item in Model.Setting.Menu?.Take(5))
+                            {
+                                if (item.StatusInFooter)
+	                            {
+		                            <li><a href="@item.Href">@item.Title</a></li>
+	                            }
+	                       
+                            }
+		              
+	                    </ul>
+                    </div> *@
+                </div>
+            </div>
+           @*  <div class="col-lg col-sm-6">
+                <div class="single-footer">
+                    <h3>@Localizer["CategoryTitle"]</h3>
+                    <div class="footer-menu">
+	                    <ul>
+                            
+		                    @foreach (var item in Model?.Categories?.Take(5)??new List<CategoryVM>())
+		                    {
+			                    <li><a href="@item.Name.ForCategoryUrl()">@item.Name</a></li>
+		                    }
+		             
+	                    </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-3 col-sm-6">
+                <div class="single-footer">
+                    <h3>@Localizer["CallTakeMobile"] </h3>
+                    <div class="footer-contact">
+                        <div class="single-contact">
+                            <div class="contact-icon">
+                                <img alt="" src="/MainTemplate/consultia/Fa/assets/img/icons/footer10-icon1.png" />
+                            </div>
+                            <a href="tel:@Model.Setting.Phone1"> @Localizer["phone"] : @Model.Setting.Phone1</a>
+                            <a href="tel:@Model.Setting.Phone2"> @Localizer["mobile"] : @Model.Setting.Phone2</a>
+                        </div>
+                    </div>
+                    <div class="footer-contact">
+                        <div class="single-contact">
+                            <div class="contact-icon">
+                                <img alt="" src="/MainTemplate/consultia/Fa/assets/img/icons/footer10-icon2.png" />
+                            </div>
+                            <a href="mailto:@Model.Setting.Email">@Model.Setting.Email</a>
+                          
+                        </div>
+                    </div>
+                </div>
+            </div> *@
+        </div>
+        <div class="row align-items-center copyright2">
+            <div class="col-lg-6 m-auto text-center">
+         @*        <p>© 1403 @Model.Setting.Title @Localizer["BY"]  @Model.Setting.DeveloperName.@Localizer["Privacy"] .</p>
+          *@   </div>
+        </div>
+    </div>
+</footer>
+<!--=====Footer end=======-->
+
+<!--=====Up arrow start=======-->
+<div class="progress-wrap">
+	<svg
+		class="progress-circle svg-content"
+		height="100%"
+		viewbox="-1 -1 102 102"
+		width="100%"
+	>
+		<path d="M50,1 a49,49 0 0,1 0,98 a49,49 0 0,1 0,-98"></path>
+	</svg>
+</div>
+<!--=====Up arrow end=======-->
