@@ -1,0 +1,314 @@
+﻿@using System.Globalization
+
+@using Microsoft.AspNetCore.Mvc.Localization
+@* @model HeaderVM *@
+@* 
+@inject IViewLocalizer Localizer *@
+
+<!--=====Header start=======-->
+<div class="header10-top-area">
+	<div class="container-fluid">
+		<div class="row">
+			<div class="col-lg-6">
+				<div class="header10-top-left header10-top">
+					<a href="">
+						<img alt=""
+							 src="/consultia/Fa/assets/img/icons/header10-icon1.png" />@* @Model.Setting.Email *@
+					</a>
+					<a href="#">
+						<img alt="" src="/consultia/Fa/assets/img/icons/header10-icon2.png" />
+						@* @Model.Setting.AddressCompany *@
+					</a>
+				</div>
+			</div>
+			<div class="col-lg-6">
+				<div class="header10-top-right header10-top">
+					<a href="/">
+						<img alt="" src="/consultia/Fa/assets/img/icons/header10-icon3.png" />
+						@* @Localizer["AllDayOpen"] *@
+
+
+						@* هر  روز  8:00 صبح تا 5:00 بعد از ظهر *@
+					</a>
+					<a href="tel:">
+						<img alt="" src="/consultia/Fa/assets/img/icons/header10-icon4.png" />اکنون
+					@* 	@Localizer["CallTakeMobile"]: @Model.Setting.Phone1 *@
+					</a>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+<header class="header header-10 header-absolute d-none d-lg-block"
+		id="header">
+	<div class="container-fluid">
+		<div class="row">
+			<div class="col-12">
+				<div class="header-elements">
+					<div class="header_menu_area">
+						<div class="logo">
+							<a href="index.html">
+								<img alt="" src="/consultia/Fa/assets/img/logo/header-logo10.svg" />
+							</a>
+						</div>
+					</div>
+					<div class="main-menu">
+						<div class="menu-wrap">
+							<ul class="menu_list menu_list6">
+
+								@* <li class="mega-menu-parrent">
+									<a href="#"> @Localizer["PageTitle"]</a>
+									<ul class="theme-mega-menu">
+										<li class="mega-menu">
+											<div class="single-mega-menu">
+												<h3 class="font-f-1">@Localizer["CategoryTitle"]</h3>
+												<ul>
+													@foreach (var item in Model.Categories ?? new List<CategoryVM>())
+													{
+														<li><a href="@item.Name.ForCategoryUrl()"> @item.Name</a></li>
+													}
+
+
+												</ul>
+											</div>
+											<div class="single-mega-menu">
+												<h3 class="font-f-1">@Localizer["ServiceTitle"]</h3>
+												<ul>
+													@foreach (var item in Model?.Service ?? new List<ServiceVM>())
+													{
+														<li><a href="@item.ShortTitle.ForServiceUrl()"> @item.ShortTitle</a></li>
+													}
+
+												</ul>
+											</div>
+											<div class="single-mega-menu">
+												<h3 class="font-f-1">@Localizer["BlogTitle"]</h3>
+												<ul>
+													@foreach (var item in Model.Blogs ?? new List<BlogVM>())
+													{
+														<li><a href="@item.ShortTitle.ForBlogUrl()"> @item.ShortTitle</a></li>
+													}
+												</ul>
+											</div>
+											<div class="single-mega-menu">
+												<h3 class="font-f-1">@Localizer["NewsTitle"]</h3>
+												<ul>
+													@foreach (var item in Model.News ?? new List<NewsVM>())
+													{
+														<li><a href="@item.ShortTitle.ForNewsUrl()"> @item.ShortTitle</a></li>
+													}
+												</ul>
+											</div>
+											<div class="single-mega-menu">
+												<h3 class="font-f-1"> @Localizer["TagTitle"]</h3>
+												<ul>
+													@foreach (var item in Model.Tag ?? new List<TagVM>())
+													{
+														<li><a href="@item.Name.ForTagUrl()"> @item.Name</a></li>
+													}
+												</ul>
+											</div>
+										</li>
+									</ul>
+								</li> *@
+
+
+
+						@* 		@foreach (var item in Model?.Menu?.Take(5))
+								{
+									<li class="dropdown-parrent">
+										<a href="@item.Href">@item.Title</a>
+
+									</li>
+								}
+								@foreach (var item in Model?.Languages ?? new List<LanguagesVM>())
+								{
+									<li class="">
+										<a href="/Language/Change/@item.Lang_Id">@item.Title</a>
+
+									</li>
+								} *@
+							</ul>
+						</div>
+					</div>
+					<div class="header10-side-button">
+				@* 		@if (User.Identity.IsAuthenticated && User.IsInRole("Administrator"))
+						{
+							<a class="login-btn" href="/Admin/ManageBlog/index">
+								<img alt="" src="/consultia/Fa/assets/img/icons/login-lock.svg" />
+								@Localizer["LoginAdminButton"]
+							</a>
+						}
+						else
+						{
+							<a class="login-btn" href="/login">
+								<img alt="" src="/consultia/Fa/assets/img/icons/login-lock.svg" />
+								@Localizer["LoginButton"]
+							</a>
+						} *@
+
+						@*    <a class="new-btn7" href="service-1.html">
+                            <span>
+                                <img alt=""
+                                     src="/consultia/Fa/assets/img/icons/new-btn7-icon.svg" />
+                            </span>مشاوره رایگان
+                        </a> *@
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</header>
+<!--=====Header end=======-->
+<!--=====Mobile header start=======-->
+<div class="mobile-header mobile-header-4 d-lg-none">
+	<div class="container-fluid">
+		<div class="col-12">
+			<div class="mobile-header-elements">
+				<div class="mobile-logo">
+					<a href="index.html">
+						<img alt="" src="/consultia/Fa/assets/img/logo/footer-logo10.svg" />
+					</a>
+				</div>
+				<div class="mobile-nav-icon">
+					<i class="fa-solid fa-bars"></i>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+<div class="mobile-sidebar">
+	<div class="menu-close">
+		<i class="fa-solid fa-xmark"></i>
+	</div>
+	<div class="mobile-nav">
+@* 		<ul class="mobile-nav-list">
+
+
+			<li>
+				<a href="#"> @Localizer["PageTitle"]</a>
+				<ul class="sub-menu">
+					<li>
+						<a href="#">@Localizer["CategoryTitle"]</a>
+						<ul class="sub-menu">
+
+							@foreach (var item in Model.Categories ?? new List<CategoryVM>())
+							{
+								<li><a href="@item.Name.ForCategoryUrl()"> @item.Name</a></li>
+							}
+
+
+
+						</ul>
+
+						<a href="#">@Localizer["ServiceTitle"]</a>
+						<ul class="sub-menu">
+
+							@foreach (var item in Model?.Service ?? new List<ServiceVM>())
+							{
+								<li><a href="@item.ShortTitle.ForServiceUrl()"> @item.ShortTitle</a></li>
+							}
+
+
+
+						</ul>
+
+						<a href="#">@Localizer["BlogTitle"]</a>
+						<ul class="sub-menu">
+
+							@foreach (var item in Model.Blogs ?? new List<BlogVM>())
+							{
+								<li><a href="@item.ShortTitle.ForBlogUrl()"> @item.ShortTitle</a></li>
+							}
+
+
+
+						</ul>
+						<a href="#">@Localizer["NewsTitle"]</a>
+						<ul class="sub-menu">
+
+							@foreach (var item in Model.News ?? new List<NewsVM>())
+							{
+								<li><a href="@item.ShortTitle.ForNewsUrl()"> @item.ShortTitle</a></li>
+							}
+
+
+
+						</ul>
+						<a href="#">@Localizer["TagTitle"]</a>
+						<ul class="sub-menu">
+
+							@foreach (var item in Model.Tag ?? new List<TagVM>())
+							{
+								<li><a href="@item.Name.ForTagUrl()"> @item.Name</a></li>
+							}
+
+
+						</ul>
+					</li>
+
+				</ul>
+			</li>
+
+			<li>
+				<a href="#"> @Localizer["MainMenuMobile"]</a>
+				<ul class="sub-menu">
+
+					@foreach (var item in Model?.Menu?.Take(5))
+					{
+
+						<li class="dropdown-parrent">
+							<a href="@item.Href">@item.Title</a>
+
+						</li>
+					}
+
+
+				</ul>
+
+			</li>
+
+			<li>
+				<a href="#"> @Localizer["LanguageName"]</a>
+				<ul class="sub-menu">
+
+					@foreach (var item in Model?.Languages ?? new List<LanguagesVM>())
+					{
+						<li class="">
+							<a href="/Language/Change/@item.Lang_Id">@item.Title</a>
+
+						</li>
+					}
+
+
+				</ul>
+
+			</li>
+		</ul>
+		<div class="mobile-contact">
+			<div class="single-footer">
+				<h3>  @Localizer["CallTakeMobile"]</h3>
+				<div class="footer-contact">
+					<div class="single-contact">
+						<div class="contact-icon">
+							<img alt="" src="/consultia/Fa/assets/img/icons/contact-phone4.svg" />
+						</div>
+						<a href="#"> @Model?.Setting?.Phone1</a>
+						<a href="#"> @Model?.Setting?.Phone2</a>
+					
+					</div>
+				</div>
+				<div class="footer-contact">
+					<div class="single-contact">
+						<div class="contact-icon">
+							<img alt="" src="/consultia/Fa/assets/img/icons/contact-email4.svg" />
+						</div>
+						<a href="#">@Model?.Setting?.Email</a>
+						
+					</div>
+				</div>
+			</div>
+		</div> *@
+	</div>
+</div>
+<!--=====Mobile header end=======-->
