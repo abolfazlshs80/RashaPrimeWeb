@@ -11,4 +11,9 @@
     <ProjectReference Include="..\RashaPrimeWeb.Infrastructure\RashaPrimeWeb.Infrastructure.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Components\Handler\" />
+    <Folder Include="Components\Views\" />
+  </ItemGroup>
+
 </Project>
