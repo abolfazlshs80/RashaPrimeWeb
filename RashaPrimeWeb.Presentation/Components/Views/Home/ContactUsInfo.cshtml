@@ -1,0 +1,128 @@
+﻿@using Microsoft.AspNetCore.Mvc.Localization
+@model RashaPrimeWeb.Application.CQRS.Setting.Queries.GetSetting.GetSettingDto
+
+
+@inject IViewLocalizer Localizer
+<!--=====contact start=======-->
+<div class="contact10 sp2">
+    <div class="container">
+        <div class="row align-items-center">
+            <div class="col-lg-6">
+                <div class="headding10">
+                    <span class="span" data-aos="fade-right" data-aos-duration="700">
+                        <img alt=""
+                             src="/MainTemplate/consultia/Fa/assets/img/icons/headding10-span-icon.png" />@Localizer["TitlePage"]
+                    </span>
+                    <h2 data-aos="fade-right" data-aos-duration="900">
+                        @Localizer["DescPage"]
+                    </h2>
+                    <div class="space16"></div>
+                    <p data-aos="fade-right" data-aos-duration="1000">
+                        @Localizer["TextPage"]
+                    </p>
+                    <div class="contact-10-area">
+                        <h3 data-aos="fade-right" data-aos-duration="700">@Localizer["WorkDateTime"]</h3>
+                        <div class="time-area"
+                             data-aos="fade-right"
+                             data-aos-duration="900">
+                            <a href="index-11.html#">
+                                <img alt="" src="/MainTemplate/consultia/Fa/assets/img/icons/time.svg" />@Localizer["TimeOne"]
+                            </a>
+                            <a href="index-11.html#">
+                                <img alt="" src="/MainTemplate/consultia/Fa/assets/img/icons/time.svg" />@Localizer["TimeTwo"]
+                            </a>
+                        </div>
+                        <div class="space10"></div>
+                        <div class="contact-icon-box">
+                            <div class="contact-box"
+                                 data-aos="fade-right"
+                                 data-aos-duration="900">
+                                <div class="icon">
+                                    <img alt="" src="/MainTemplate/consultia/Fa/assets/img/icons/contact10-icon1.png" />
+                                </div>
+                                <div class="headding">
+                                    <h4>@Localizer["LocationTitle"]</h4>
+                                    <a href="index-11.html#">@Model.AddressCompany</a>
+                                </div>
+                            </div>
+                            <div class="contact-box"
+                                 data-aos="fade-right"
+                                 data-aos-duration="1100">
+                                <div class="icon">
+                                    <img alt="" src="/MainTemplate/consultia/Fa/assets/img/icons/contact10-icon2.png" />
+                                </div>
+                                <div class="headding">
+                                    <h4>@Localizer["PhoneCompany"]</h4>
+                                    <a href="tel:@Model.Phone1">@Model.Phone1</a>
+                                </div>
+                            </div>
+                            <div class="contact-box"
+                                 data-aos="fade-right"
+                                 data-aos-duration="700">
+                                <div class="icon">
+                                    <img alt="" src="/MainTemplate/consultia/Fa/assets/img/icons/contact10-icon3.png" />
+                                </div>
+                                <div class="headding">
+                                    <h4>@Localizer["EmailCompany"]</h4>
+                                    <a href="mailto:@Model.Email">@Model.Email</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-6">
+                <div class="contact10-form"
+                     data-aos="zoom-out"
+                     data-aos-duration="800">
+                    <form action="/Home/InsertFaq" method="post">
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="single-input">
+                                    <label>@Localizer["Name"]*</label>
+                                    <input required="" name="name" placeholder="@Localizer["Name"]" type="text" />
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="single-input">
+                                    <label> @Localizer["Family"]*</label>
+                                    <input required="" name="family" placeholder="@Localizer["Family"]" type="text" />
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="single-input">
+                                    <label> @Localizer["Email"]*</label>
+                                    <input name="email" placeholder="@Localizer["Email"]" type="email" />
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="single-input">
+                                    <label> @Localizer["Phone"]*</label>
+                                    <input required="" name="phone" placeholder=" @Localizer["Phone"]" type="number" />
+                                </div>
+                            </div>
+                            <div class="col-lg-12">
+                                <div class="single-input">
+                                    <label>@Localizer["Text"]*</label>
+                                    <textarea cols="30" name="message" required=""
+                                              placeholder="@Localizer["Text"]"
+                                              rows="6"></textarea>
+                                </div>
+                            </div>
+                            <div class="space20"></div>
+                            <div class="col-lg-12">
+                                <button class="new-btn7">
+                                    <span>
+                                        <img alt=""
+                                             src="/MainTemplate/consultia/Fa/assets/img/icons/new-btn7-icon.svg" />
+                                    </span>@Localizer["Submit"]
+                                </button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!--=====contact end=======-->

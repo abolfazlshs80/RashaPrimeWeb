@@ -1,0 +1,65 @@
+﻿@using Microsoft.AspNetCore.Mvc.Localization
+@model RashaPrimeWeb.Application.Common.Models.PaginatedResult<RashaPrimeWeb.Application.CQRS.Faq.Queries.GetAllFaq.GetAllFaqDto>
+
+
+@inject IViewLocalizer Localizer
+<!--=====testimonmial start=======-->
+<div class="tes10 sp2">
+    <div class="container">
+        <div class="row align-items-center">
+            <div class="col-lg-6">
+                <div class="headding10">
+                    <span class="span" data-aos="fade-up" data-aos-duration="700">
+                        <img alt=""
+                             src="/MainTemplate/consultia/Fa/assets/img/icons/headding10-span-icon.png" />   @Localizer["TitleForFaq"]
+                    </span>
+                    <h2 data-aos="fade-up" data-aos-duration="900">
+                        @Localizer["DescForFaq"]
+                    </h2>
+                </div>
+            </div>
+            <div class="col-lg-6">
+                <div class="tes10-arrows"
+                     data-aos="fade-up"
+                     data-aos-duration="700">
+                    <div class="testimonial10-next-arrow">
+                        <button><i class="fa-solid fa-arrow-left"></i></button>
+                    </div>
+                    <div class="testimonial10-prev-arrow">
+                        <button><i class="fa-solid fa-arrow-right"></i></button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="space60"></div>
+        <div class="row">
+            <div class="col-lg-12">
+	            <div class="tes10-slider-all"
+	                 data-aos="fade-up"
+	                 data-aos-duration="1000">
+                    
+                    @foreach (var item in Model.Items)
+                    {
+	                    <div class="single-slider">
+		                    <div class="headding-top">
+			                    <h3><a href="index-11.html#">@item.FullName.</a></h3>
+			                    <p>@item.Text</p>
+		                    </div>
+		                    <div class="headding10">
+			                    <div class="icon">
+				                    <img alt="" src="/MainTemplate/consultia/Fa/assets/img/icons/tes10-icon.png"/>
+			                    </div>
+			                    <p>
+				               @Html.Raw(@item.ReplayText)
+			                    </p>
+		                    </div>
+	                    </div>
+
+                    }
+		         
+	            </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!--=====testimonial end=======-->

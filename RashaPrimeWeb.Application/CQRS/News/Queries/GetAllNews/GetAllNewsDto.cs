@@ -1,7 +1,8 @@
 ﻿namespace RashaPrimeWeb.Application.CQRS.News.Queries.GetAllNews;
 
-public class GetAllNewsDto 
+public class GetAllNewsDto
 {
+    public string ImagePath { get; set; }
     public string TitleBrowser { get; set; }
 
     public string ShortTitle { get; set; }

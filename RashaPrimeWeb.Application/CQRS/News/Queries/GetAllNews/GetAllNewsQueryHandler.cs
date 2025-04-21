@@ -19,7 +19,9 @@ public class GetAllNewsQueryHandler(IUnitOfWork unitOfWork, IMapper mapper)
         {
             string lang = CultureInfo.CurrentCulture.Name;
             var repNews = unitOfWork.Repository<Domain.Entities.News>();
-            var query = await repNews.GetAllAsync();
+            var query =  repNews.GetAllWithIncludes(query=>
+                query.Include(a=>a.FileToNews)
+                    .ThenInclude(a=>a.FileManager));
 
             // فیلتر کردن بر اساس عنوان
             if (!string.IsNullOrWhiteSpace(request.Title))
@@ -42,6 +44,7 @@ public class GetAllNewsQueryHandler(IUnitOfWork unitOfWork, IMapper mapper)
                 .Take(request.PageSize)
                 .Select(LastNews => new GetAllNewsDto
                 {
+                    ImagePath = LastNews.FileToNews.FirstOrDefault().FileManager.Path,
                     TitleBrowser = LastNews.TitleBrowser,
                     LinkKey = LastNews.LinkKey,
                     LongTitle = LastNews.LongTitle,

@@ -16,7 +16,9 @@ public class GetAllServiceQueryHandler(IUnitOfWork unitOfWork, IMapper mapper)
                                          CancellationToken cancellationToken = default)
     {
         var repService = unitOfWork.Repository<Domain.Entities.Service>();
-        var query = await repService.GetAllAsync();
+        var query =  repService.GetAllWithIncludes(query=>
+            query.Include(a=>a.FileToService)
+            .ThenInclude(a=>a.FileManager));
 
         // فیلتر کردن بر اساس عنوان
         if (!string.IsNullOrWhiteSpace(request.Title))
@@ -39,6 +41,7 @@ public class GetAllServiceQueryHandler(IUnitOfWork unitOfWork, IMapper mapper)
             .Take(request.PageSize)
             . Select(LastService => new GetAllServiceDto
             {
+                ImagePath = LastService.FileToService.FirstOrDefault().FileManager.Path??string.Empty,
                 TitleBrowser = LastService.TitleBrowser,
                 LinkKey = LastService.LinkKey,
                 LongTitle = LastService.LongTitle,

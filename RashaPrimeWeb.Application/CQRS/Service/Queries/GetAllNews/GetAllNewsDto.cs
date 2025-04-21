@@ -4,6 +4,7 @@ namespace RashaPrimeWeb.Application.CQRS.Service.Queries.GetAllNews;
 
 public record class GetAllServiceDto : BaseDTO
 {
+    public string ImagePath { get; set; }
     public string TitleBrowser { get; set; }
 
     public string ShortTitle { get; set; }

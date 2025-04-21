@@ -1,23 +1,21 @@
 ﻿using MediatR;
 using Microsoft.AspNetCore.Mvc;
-
-using RashaPrimeWeb.Application.CQRS.Blog.Queries.GetAllBlog;
 using RashaPrimeWeb.Application.CQRS.Service.Queries.GetAllNews;
+using RashaPrimeWeb.Application.CQRS.Slider.Queries.GetAllSlider;
 
-namespace RashaPrimeWeb.WEB.Components.Home
+namespace RashaPrimeWeb.WEB.Components.Main
 {
-    public class ServiceHomeComponents(IMediator mediator) : ViewComponent
+    public class SliderHomeComponents(IMediator mediator) : ViewComponent
     {
- 
 
         public async Task<IViewComponentResult> InvokeAsync()
         {
             int Take = 5;
             int Page = 1;
             bool GetOldest = false;
-            var query = new GetAllServiceQuery(null, GetOldest, Page, Take);
+            var query = new GetAllSliderQuery(null, GetOldest, Page, Take);
             var model = await mediator.Send(query);
-            return View("/Components/Views/Home/ServiceHome.cshtml",model);
+            return View("/Components/Views/Home/slider.cshtml", model);
         }
 
     }
