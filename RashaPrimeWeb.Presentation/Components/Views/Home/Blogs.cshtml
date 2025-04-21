@@ -1,0 +1,77 @@
+﻿
+@using Microsoft.AspNetCore.Mvc.Localization
+@model RashaPrimeWeb.Application.Common.Models.PaginatedResult<RashaPrimeWeb.Application.CQRS.Blog.Queries.GetAllBlog.GetAllBlogDto>
+
+
+@inject IViewLocalizer Localizer
+<!--=====blog start=======-->
+<div class="blog10 sp2">
+    <div class="container">
+        <div class="row align-items-center">
+            <div class="col-lg-6">
+                <div class="headding10">
+                    <span class="span" data-aos="fade-up" data-aos-duration="700">
+                        <img alt=""
+                             src="/MainTemplate/consultia/Fa/assets/img/icons/headding10-span-icon.png" />@Localizer["Title"]
+                    </span>
+                    <h2 data-aos="fade-up" data-aos-duration="1000">
+	                    @Localizer["Desc"]
+                    </h2>
+                </div>
+            </div>
+            <div class="col-lg-6">
+                <div class="blog10-arrows"
+                     data-aos="fade-up"
+                     data-aos-duration="800">
+                    <div class="blog10-next-arrow">
+                        <button><i class="fa-solid fa-arrow-left"></i></button>
+                    </div>
+                    <div class="blog10-prev-arrow">
+                        <button><i class="fa-solid fa-arrow-right"></i></button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="space60"></div>
+        <div class="row">
+            <div class="col-lg-12">
+	            <div class="blog10-slider-all"
+	                 data-aos="fade-up"
+	                 data-aos-duration="900">
+					
+                     @foreach (var item in Model.Items)
+                     {
+	                     <div class="blog10-single-slider">
+		                     <div class="image img100">
+			                     <img alt="" src="@item?.ImagePath.ImageForBlogUrl()"/>
+		                     </div>
+		                     <div class="headding10">
+			                     <h4>
+                                    <a href="@item?.TitleBrowser?.ForBlogUrl()">@item.ShortTitle</a>
+			                     </h4>
+			                     <a class="learn" href="@item?.TitleBrowser?.ForBlogUrl()">
+                                    @Localizer["ReadMore"]<span><i class="fa-solid fa-arrow-right"></i></span>
+			                     </a>
+		                     </div>
+	                     </div>
+                     }
+		       
+		    
+	            </div>
+            </div>
+        </div>
+        <div class="space40"></div>
+        <div class="row">
+            <div class="col-lg-12 text-center">
+                <div class="" data-aos="fade-up" data-aos-duration="800">
+                    <a class="new-btn7" href="/Blogs">
+	                    <span><img alt="" src="/MainTemplate/consultia/Fa/assets/img/icons/new-btn7-icon.svg" /></span>
+
+                        @Localizer["RealAll"]
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!--=====blog end=======-->

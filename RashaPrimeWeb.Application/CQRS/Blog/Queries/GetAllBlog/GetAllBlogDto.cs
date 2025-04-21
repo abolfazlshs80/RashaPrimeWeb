@@ -2,6 +2,7 @@
 
 public class GetAllBlogDto 
 {
+    public string ImagePath { get; set; }
     public string TitleBrowser { get; set; }
 
     public string ShortTitle { get; set; }

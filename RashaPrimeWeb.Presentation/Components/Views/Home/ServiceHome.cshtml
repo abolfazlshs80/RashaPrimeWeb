@@ -1,0 +1,202 @@
+﻿@using nameSpace.MVC.Models.Service
+@using Microsoft.AspNetCore.Mvc.Localization
+@model RashaPrimeWeb.Application.Common.Models.PaginatedResult<RashaPrimeWeb.Application.CQRS.Service.Queries.GetAllNews.GetAllServiceDto>
+@{
+	int index = 0;
+	bool changepossistion = true;
+}
+
+@inject IViewLocalizer Localizer
+<!--=====service start=======-->
+<div class="service10 sp2">
+	<div class="container">
+		<div class="row">
+			<div class="col-lg-4">
+				<div class="headding10">
+					<span class="span" data-aos="fade-right" data-aos-duration="700">
+						<img alt=""
+							 src="/consultia/Fa/assets/img/icons/headding10-span-icon.png" />@Localizer["TitleForOurService"]
+					</span>
+					<h2 data-aos="fade-right" data-aos-duration="700">
+						@Localizer["TitleForService"]
+					</h2>
+					<div class="space16"></div>
+					<p data-aos="fade-right" data-aos-duration="=1000">
+						@Localizer["DescForService"]
+					</p>
+					<div class="space30"></div>
+					<div class="" data-aos="fade-right" data-aos-duration="900">
+						<a class="new-btn7" href="service-1.html">
+							<span>
+								<img alt=""
+									 src="/consultia/Fa/assets/img/icons/new-btn7-icon.svg" />
+							</span>@Localizer["SpanForService"]
+						</a>
+					</div>
+				</div>
+			</div>
+			<div class="col-lg-2"></div>
+			<div class="col-lg-6">
+				<div class="service10-boxs">
+					<div class="row">
+
+						@foreach (var item in Model.Where(a => a.ServiceType.Equals((int)(ServiceOfType.Internal))).Take(4))
+						{
+							<div class="col-md-6">
+								<div class="service10-box headding10"
+									 data-aos="fade-up"
+									 data-aos-duration="700">
+									@*          <div class="icon">
+				                        <img alt="" src="/consultia/Fa/assets/img/icons/service10-icon1.png"/>
+			                        </div> *@
+									<h4><a href="@item.TitleBrowser.ForServiceUrl()">@item.TitleBrowser</a></h4>
+									<p>
+										@item.LongTitle
+									</p>
+									<a class="learn" href="@item.TitleBrowser.ForServiceUrl()">
+										@Localizer["ReadMoreForService"]<span><i class="fa-solid fa-arrow-right"></i></span>
+									</a>
+								</div>
+							</div>
+						}
+
+
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+<!--=====service end=======-->
+<!--=====progress start=======-->
+<div class="progress10 sp2">
+	<div class="container">
+		<div class="row">
+			<div class="col-lg-7 m-auto text-center">
+				<div class="headding10">
+					<span class="span">
+						<img alt=""
+							 src="/consultia/Fa/assets/img/icons/headding10-span-icon.png" />@Localizer["TitleForStartUp"]
+					</span>
+					<h2>@Localizer["DescForStartup"]</h2>
+					<div class="space16"></div>
+					<p>
+						@Localizer["textForStartUp"]
+					</p>
+				</div>
+			</div>
+		</div>
+
+
+
+	
+		<div class="space30"></div>
+		
+		@foreach (var item in Model.Where(a => a.ServiceType.Equals((int)(ServiceOfType.StartUp))).Take(4))
+		{
+			if (changepossistion)
+			{
+				<div class="progress10-wrap">
+		
+					<div class="row">
+						<div class="col-lg-6">
+							<div class="progress-img-right">
+
+			
+								<div class="image img100"
+								     data-aos="fade-up"
+								     data-aos-anchor-placement="bottom-bottom"
+								     data-aos-duration="700">
+									<img alt="" src="@item.FileToService.FirstOrDefault().FileManager.Path.ImageForServiceUrl()" />
+								</div>
+							
+								<div class="shape">
+									<img alt="" src="/consultia/Fa/assets/img/shapes/about10-shape.svg" />
+								</div>
+							
+								
+								<div class="common-shape">
+									<img alt="" src="/consultia/Fa/assets/img/shapes/progress-shape1.svg" />
+								</div>
+				
+				
+				
+								<div class="common-shape">
+									<img alt="" src="/consultia/Fa/assets/img/shapes/progress-shape1.svg" />
+								</div>
+							</div>
+						</div>
+						<div class="col-lg-6">
+							<div class="headding10">
+								<span class="number" data-aos="fade-left" data-aos-duration="700">01</span>
+								<h2 data-aos="fade-left" data-aos-duration="900">@item.TitleBrowser</h2>
+								<p data-aos="fade-left" data-aos-duration="1100">
+									@item.LongTitle
+								</p>
+							</div>
+						</div>
+					</div>
+				</div>
+			}
+			else
+			{
+				<div class="progress10-wrap">
+					<div class="row">
+
+			
+						<div class="col-lg-6 d-md-block d-none">
+							<div class="headding10">
+								<span class="number"
+								      data-aos="fade-right"
+								      data-aos-duration="700">02</span>
+								<h2 data-aos="fade-right" data-aos-duration="900">
+									@item.TitleBrowser
+								</h2>
+								<p data-aos="fade-right" data-aos-duration="1100">
+									@item.LongTitle
+								</p>
+							</div>
+						</div>
+						<div class="col-lg-6">
+							<div class="progress-img-left">
+								<div class="image img100"
+								     data-aos="fade-up"
+								     data-aos-anchor-placement="bottom-bottom"
+								     data-aos-duration="700">
+									<img alt="" src="@item.FileToService.FirstOrDefault().FileManager.Path.ImageForServiceUrl()" />
+								</div>
+								<div class="shape">
+									<img alt=""
+									     src="/consultia/Fa/assets/img/shapes/hero10-main-img-shape.svg" />
+								</div>
+								<div class="common-shape">
+									<img alt="" src="/consultia/Fa/assets/img/shapes/progress-shape2.svg" />
+								</div>
+							</div>
+						</div>
+						<div class="col-lg-6 d-md-none d-block">
+							<div class="headding10">
+								<span class="number"
+								      data-aos="fade-right"
+								      data-aos-duration="700">02</span>
+								<h2 data-aos="fade-right" data-aos-duration="900">
+									@item.TitleBrowser
+								</h2>
+								<p data-aos="fade-right" data-aos-duration="1100">
+									@item.LongTitle
+								</p>
+							</div>
+						</div>
+					</div>
+				</div>
+			}
+
+			changepossistion =! changepossistion;
+		}
+		
+	
+	
+
+	</div>
+</div>
+<!--=====progress end=======-->

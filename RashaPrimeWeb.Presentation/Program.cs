@@ -1,5 +1,5 @@
 ﻿using RashaPrimeWeb.Application;
-using RashaPrimeWeb.Application.Extentions;
+
 using RashaPrimeWeb.Infrastructure;
 
 namespace RashaPrimeWeb.Presentation

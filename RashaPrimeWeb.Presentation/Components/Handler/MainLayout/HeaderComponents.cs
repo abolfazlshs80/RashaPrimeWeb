@@ -17,9 +17,10 @@ namespace RashaPrimeWeb.Presentation.Components.Handler.MainLayout
 
         public async Task<IViewComponentResult> InvokeAsync()
         {
-            int Take = 5;
-            int Page = 1;
-            bool GetOldest = false;
+           
+             int Take = 5;
+             int Page = 1;
+             bool GetOldest = false;
 
             var Header = new HeaderVM();
             var querySetting = new GetSettingQuery();

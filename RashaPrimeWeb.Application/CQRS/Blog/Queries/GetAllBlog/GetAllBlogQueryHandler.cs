@@ -16,7 +16,9 @@ public class GetAllBlogQueryHandler(IUnitOfWork unitOfWork, IMapper mapper)
                                          CancellationToken cancellationToken = default)
     {
         var repBlog = unitOfWork.Repository<Domain.Entities.Blog>();
-        var query = await repBlog.GetAllAsync();
+        var query =  repBlog.GetAllWithIncludes(query => 
+            query.Include(a => a.FileToBlog)
+                .ThenInclude(a => a.FileManager));
 
         // فیلتر کردن بر اساس عنوان
         if (!string.IsNullOrWhiteSpace(request.Title))
@@ -34,10 +36,10 @@ public class GetAllBlogQueryHandler(IUnitOfWork unitOfWork, IMapper mapper)
 
         // صفحه‌بندی
         var items = await query
-          
+
             .Skip((request.PageNumber - 1) * request.PageSize)
             .Take(request.PageSize)
-            . Select(LastBlog => new GetAllBlogDto
+            .Select(LastBlog => new GetAllBlogDto
             {
                 TitleBrowser = LastBlog.TitleBrowser,
                 LinkKey = LastBlog.LinkKey,
@@ -45,12 +47,13 @@ public class GetAllBlogQueryHandler(IUnitOfWork unitOfWork, IMapper mapper)
                 ShortTitle = LastBlog.ShortTitle,
                 Lang_Id = LastBlog.Lang_Id,
                 Seen = LastBlog.Seen,
+                ImagePath = LastBlog.FileToBlog.FirstOrDefault().FileManager.Path
             })
             .ToListAsync(cancellationToken);
 
         // مپ کردن داده‌ها به GetAllCategoryDto
-       // var mappedItems = mapper.Map<List<GetAllBlogDto>>(items);
-   
+        // var mappedItems = mapper.Map<List<GetAllBlogDto>>(items);
+
 
 
         // بازگرداندن نتیجه

@@ -8,8 +8,7 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Localization;
 using RashaPrimeWeb.Application.Models.ViewModel.Resource;
 
-namespace RashaPrimeWeb.Application.Extentions
-{
+
     public static class MultiLanguageExtention
     {
 
@@ -54,4 +53,4 @@ namespace RashaPrimeWeb.Application.Extentions
             return app;
         }
     }
-}
+
