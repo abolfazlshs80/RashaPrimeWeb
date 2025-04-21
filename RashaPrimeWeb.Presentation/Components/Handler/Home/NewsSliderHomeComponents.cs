@@ -1,5 +1,6 @@
 ﻿using MediatR;
 using Microsoft.AspNetCore.Mvc;
+using RashaPrimeWeb.Application.CQRS.News.Queries.GetAllNews;
 using RashaPrimeWeb.Application.CQRS.Service.Queries.GetAllNews;
 
 namespace RashaPrimeWeb.Presentation.Components.Handler.Home
@@ -13,7 +14,7 @@ namespace RashaPrimeWeb.Presentation.Components.Handler.Home
             int Take = 5;
             int Page = 1;
             bool GetOldest = false;
-            var query = new GetAllServiceQuery(null, GetOldest, Page, Take);
+            var query = new GetAllNewsQuery(null, GetOldest, Page, Take);
             var model = await mediator.Send(query);
             return View("/Components/Views/Home/news.cshtml", model);
         }
