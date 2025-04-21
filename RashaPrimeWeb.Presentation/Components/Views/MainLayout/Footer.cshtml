@@ -1,8 +1,8 @@
-﻿@* @using RashaPrimeWeb.DataLayer.MVC.Models.Category *@
+﻿
 @using Microsoft.AspNetCore.Mvc.Localization
-@* @model FooterVM *@
-@* 
-@inject IViewLocalizer Localizer *@
+@model RashaPrimeWeb.Application.Models.ViewModel.MainLayout.FooterVM
+
+@inject IViewLocalizer Localizer
 <!--=====Footer start=======-->
 <footer class="footer-area footer-area10 padding-top footer-4">
     <div class="container">
@@ -13,10 +13,10 @@
                         <img alt="" src="/MainTemplate/consultia/Fa/assets/img/logo/footer-logo10.svg" />
                     </a>
                     <div class="space20"></div>
-	              @*   <p>@(Model.Setting.FotterDesc)</p> *@
+	                <p>@(Model.Setting.FotterDesc)</p>
                     <div class="space10"></div>
                     <div class="social social3">
-                   @*      <ul>
+                        <ul>
                             <li>
                                 <a data-bs-toggle="tooltip"
                                    href="@Model.Setting.WhatappNumber"
@@ -33,17 +33,17 @@
                                 </a>
                             </li>
                      
-                        </ul> *@
+                        </ul>
                     </div>
                 </div>
             </div>
             <div class="col-lg col-sm-6">
                 <div class="single-footer">
-                 @*    <h3>@Localizer["PageTitle"]</h3>
+                    <h3>@Localizer["PageTitle"]</h3>
                     <div class="footer-menu">
 	                    <ul>
                             
-                            @foreach (var item in Model.Setting.Menu?.Take(5))
+                            @foreach (var item in Model.Menu?.Items)
                             {
                                 if (item.StatusInFooter)
 	                            {
@@ -53,16 +53,16 @@
                             }
 		              
 	                    </ul>
-                    </div> *@
+                    </div>
                 </div>
             </div>
-           @*  <div class="col-lg col-sm-6">
+            <div class="col-lg col-sm-6">
                 <div class="single-footer">
                     <h3>@Localizer["CategoryTitle"]</h3>
                     <div class="footer-menu">
 	                    <ul>
-                            
-		                    @foreach (var item in Model?.Categories?.Take(5)??new List<CategoryVM>())
+
+                            @foreach (var item in Model?.Categories ? .Items)
 		                    {
 			                    <li><a href="@item.Name.ForCategoryUrl()">@item.Name</a></li>
 		                    }
@@ -93,12 +93,12 @@
                         </div>
                     </div>
                 </div>
-            </div> *@
+            </div>
         </div>
         <div class="row align-items-center copyright2">
             <div class="col-lg-6 m-auto text-center">
-         @*        <p>© 1403 @Model.Setting.Title @Localizer["BY"]  @Model.Setting.DeveloperName.@Localizer["Privacy"] .</p>
-          *@   </div>
+                <p>© 1404 @Model.Setting.Title @Localizer["BY"]  @Model.Setting.DeveloperName.@Localizer["Privacy"] .</p>
+            </div>
         </div>
     </div>
 </footer>

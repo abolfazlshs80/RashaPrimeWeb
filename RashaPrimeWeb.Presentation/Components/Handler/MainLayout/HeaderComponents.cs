@@ -1,8 +1,5 @@
-﻿using AutoMapper;
-using MediatR;
+﻿using MediatR;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.CodeAnalysis.Host;
-using Microsoft.Extensions.Localization;
 using RashaPrimeWeb.Application.CQRS.Blog.Queries.GetAllBlog;
 using RashaPrimeWeb.Application.CQRS.Category.Queries.GetAllCategory;
 using RashaPrimeWeb.Application.CQRS.Language.Queries.GetAllLanguage;
@@ -11,10 +8,8 @@ using RashaPrimeWeb.Application.CQRS.News.Queries.GetAllNews;
 using RashaPrimeWeb.Application.CQRS.Service.Queries.GetAllNews;
 using RashaPrimeWeb.Application.CQRS.Setting.Queries.GetSetting;
 using RashaPrimeWeb.Application.CQRS.Tag.Queries.GetAllTag;
-using RashaPrimeWeb.Domain.Entities;
 
-
-namespace RashaPrimeWeb.WEB.Components.Main
+namespace RashaPrimeWeb.Presentation.Components.Handler.MainLayout
 {
     public class HeaderComponents(IMediator mediator) : ViewComponent
     {
@@ -22,7 +17,7 @@ namespace RashaPrimeWeb.WEB.Components.Main
 
         public async Task<IViewComponentResult> InvokeAsync()
         {
-            int Take = 10;
+            int Take = 5;
             int Page = 1;
             bool GetOldest = false;
 

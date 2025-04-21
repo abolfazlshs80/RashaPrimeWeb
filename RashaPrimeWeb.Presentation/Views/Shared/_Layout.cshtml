@@ -24,12 +24,12 @@
 	<!-- Preloader -->
 	<!--=====Preloader end=======-->
 	<!--=====Header start=======-->
-	@await Component.InvokeAsync("HeaderComponents")
-	<!--=====Header end=======-->
+@await Component.InvokeAsync("HeaderComponents")
+<!--=====Header end=======-->
 	@RenderBody()
 	<!--=====Footer start=======-->
-	@await Component.InvokeAsync("FooterComponents")
-	<!--=====Footer end=======-->
+@await Component.InvokeAsync("FooterComponents")
+<!--=====Footer end=======-->
 
 	@* /Partial/MainLayout/_Script *@
 	<partial name="_Script" />
