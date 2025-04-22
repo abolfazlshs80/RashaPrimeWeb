@@ -1,0 +1,65 @@
+﻿
+
+@model RashaPrimeWeb.Application.CQRS.Blog.Commands.CreateBlog.CreateBlogCommand
+@{
+}
+
+
+@{
+	
+
+	Layout = "~/Areas/Admin/Views/Shared/_LayoutSiteAdmin.cshtml";
+}
+<div class="col-md-12" dir="rtl">
+	<div class="card text-end ">
+		<div class="card-header ">
+			<h3 class="card-title  text-center">@ViewBag.title</h3>
+		</div>
+		<div class="card-body">
+			@using (Html.BeginForm("Create", "ManageBlog", FormMethod.Post, new { enctype = "multipart/form-data" }))
+			{
+				@Html.AntiForgeryToken()
+				@Html.ValidationSummary(false,"",htmlAttributes: new {@class="text-danger"})
+@*				<div asp-validation-summary="ModelOnly" class="text-danger"></div>*@
+			
+				@Html.CustomHiddenHtmlHelper("Model.Seen",Model.Seen.ToString())
+		
+				@Html.CustomHiddenHtmlHelper("Model.LinkKey",Model.LinkKey?.ToString())
+	
+				
+				@Html.CustomEditorHtmlHelper("Model.ShortTitle","عنوان  ")
+
+				@Html.CustomEditorHtmlHelper("Model.TitleBrowser","عنوان در مرورگر ")
+			
+				@Html.CustomEditorHtmlHelper("Model.LongTitle","توضیحات مختصر ")
+				@Html.CustomEditorHtmlHelper("Model.Tag","تگ ")
+				@await Component.InvokeAsync("LanguageItemCreateComponents")
+				@await Component.InvokeAsync("CategoryItemCreateComponents")
+				@await Component.InvokeAsync("TagItemCreateComponents")
+		
+				@Html.CustomFileHtmlHelper("Model.FileHeader","عکس صفحه اسلایدر")
+				@Html.CustomFileHtmlHelper("Model.FileForDetials","عکس در صفحه محصول")
+
+				@Html.CustomCkEditorHtmlHelper("Model.Text")
+				@Html.ValidationMessageFor(a=>a.TitleBrowser)
+				@Html.CustomSubmitHtmlHelper()
+			}
+
+
+		</div>
+	</div>
+</div>
+
+@section Links
+	{
+
+	@Html.CustomUploadImageLinkHtmlHelper()
+	@Html.CustomCkEditorLinkHtmlHelper()
+
+}
+@section scripts{
+	@Html.CustomCkEditorScriptHtmlHelper()
+
+
+          }
+

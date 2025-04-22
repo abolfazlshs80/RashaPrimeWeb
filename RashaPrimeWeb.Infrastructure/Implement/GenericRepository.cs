@@ -47,10 +47,11 @@ namespace RashaPrimeWeb.Infrastructure.Implement
             return  _dbSet.AsQueryable();
         }
 
-        public async Task AddAsync(T entity, CancellationToken cancellationToken = default)
+        public async Task<T> AddAsync(T entity, CancellationToken cancellationToken = default)
         {
             await _dbSet.AddAsync(entity, cancellationToken);
-       //     await _context.SaveChangesAsync(cancellationToken);
+            return entity;
+            //     await _context.SaveChangesAsync(cancellationToken);
         }
 
         public async Task UpdateAsync(T entity, CancellationToken cancellationToken = default)

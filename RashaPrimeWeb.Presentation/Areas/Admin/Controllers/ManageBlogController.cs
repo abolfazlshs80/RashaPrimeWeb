@@ -8,6 +8,7 @@ using Microsoft.CodeAnalysis.CSharp.Syntax;
 
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
+using RashaPrimeWeb.Application.CQRS.Blog.Commands.CreateBlog;
 using RashaPrimeWeb.Application.CQRS.Blog.Queries.GetAllBlog;
 
 
@@ -18,7 +19,7 @@ namespace RashaPrimeWeb.WEB.Areas.Admin.Controllers
     // [Authorize(Roles = "Administrator,Teacher")]
     public class ManageBlogController(IMediator mediator) : PaginationBaseController(mediator)
     {
-  
+
         [Route("/Admin/ManageBlog/Index/{page?}")]
         [Route("/Admin/ManageBlog/Index")]
         [Route("/Admin/ManageBlog")]
@@ -30,7 +31,7 @@ namespace RashaPrimeWeb.WEB.Areas.Admin.Controllers
             }
             var queryBlog = new GetAllBlogQuery(null, GetOldest, Page, Take);
             //  await _siteMap.CreateSiteMap();
-            var list =  await mediator.Send(queryBlog);
+            var list = await mediator.Send(queryBlog);
             var model = SetPageInation<GetAllBlogDto>(page, list.Items);
             await SetViewBagAdmin(list.Items.Select(a => a.TitleBrowser).ToList(), AdminPageViewType.List, AdminPageType.Blog);
             return View(model);
@@ -39,104 +40,48 @@ namespace RashaPrimeWeb.WEB.Areas.Admin.Controllers
 
 
         }
-        //#region Create Blog
-        //[HttpGet]
-        //[Route("/Admin/ManageBlog/Create")]
-        //public async Task<IActionResult> Create()
-        //{
-        //    var list = await _blogService.GetBlog();
-        //    await SetViewBagAdmin(list.Select(a => a.TitleBrowser).ToList(), AdminPageViewType.Create, AdminPageType.Blog);
-        //    var model = new CreateBlogVM();
-        //    model.LinkKey = "";
-        //    model.Owner = User.GetUserId();
-        //    model.Seen = 0;
-         
-        //    return View(model);
-        //}
-
-        //[HttpPost("/Admin/ManageBlog/Create")]
-        //public async Task<IActionResult> Create(CreateBlogVM model)
-        //{
-        //    var list = await _blogService.GetBlog();
-        //    await SetViewBagAdmin(list.Select(a => a.TitleBrowser).ToList(), AdminPageViewType.Create, AdminPageType.Blog);
-        //    model.Owner = User.GetUserId();
-        //    model.LinkKey = "";
-        //    if (ModelState.ErrorCount <= 3)
-        //    {
-        //        if (model.FileForDetials == null || model.FileHeader == null)
-        //        {
-        //            return View(model);
-        //        }
-        //        if (model.CategoryId.Count < 1 || model.TagId.Count < 1)
-        //        {
-
-        //        }
-
-        //        model.Owner = User.GetUserId();
-        //        model.CreatedBy = User.Identity.Name;
-        //        var resBlog = await _blogService.CreateBlog(model);
-        //        var BlogId = resBlog.Data;
-        //        if (resBlog.Success)
-        //        {
-        //            foreach (var item in model.CategoryId)
-        //            {
-        //                await _blogcate.CreateCategoryToBlog(
-        //                            new CreateCategoryToBlogVM
-        //                            {
-        //                                BlogId = BlogId,
-        //                                CategoryId = item
-        //                            });
-        //            }
+        #region Create Blog
+        [HttpGet]
+        [Route("/Admin/ManageBlog/Create")]
+        public async Task<IActionResult> Create()
+        {
+            var queryBlog = new GetAllBlogQuery(null, GetOldest, Page, Take);
+            var list = await mediator.Send(queryBlog);
+            await SetViewBagAdmin(list.Items.Select(a => a.TitleBrowser).ToList(), AdminPageViewType.Create, AdminPageType.Blog);
+            var model = new CreateBlogCommand();
 
 
+            return View(model);
+        }
 
-        //            foreach (var item in model.TagId ?? Enumerable.Empty<int>())
-        //            {
-        //                var resTag = await _tagToBlogService.CreateTagToBlog(new CreateTagToBlogVM()
-        //                { BlogId = BlogId, TagId = item });
-        //            }
+        [HttpPost("/Admin/ManageBlog/Create")]
+        public async Task<IActionResult> Create(CreateBlogCommand model)
+        {
+            var queryBlog = new GetAllBlogQuery(null, GetOldest, Page, Take);
+            var list = await mediator.Send(queryBlog);
+            await SetViewBagAdmin(list.Items.Select(a => a.TitleBrowser).ToList(), AdminPageViewType.Create, AdminPageType.Blog);
 
-        //            #region File
+            model.LinkKey = "";
+            model.Lang_Id = 1;
+            if (ModelState.ErrorCount <= 3)
+            {
+                if (model.FileForDetials == null || model.FileHeader == null)
+                {
+                    return View(model);
+                }
+                if (model.CategoryId.Count < 1 || model.TagId.Count < 1)
+                {
 
-
-        //            var filename = model.TitleBrowser.Replace(" ", "-");
-        //            var rnd = new Random().Next(1000, 99999).ToString();
-        //            var Name = await _fileuploader.CreateFileLocal(model.FileHeader, "Blog", rnd, filename, "-Slider");
-        //            var resBlogSlider = await _file.CreateFileImages(new Pr_Signal_ir.MVC.Models.FileImages.CreateFileImagesVM
-        //            {
-        //                Owner = model.Owner,
-        //                DateCreated = DateTime.Now,
-
-        //                IsUploaderFile = false,
-        //                Title = model.TitleBrowser,
-        //                Path = Name,
-        //                Type = "Blog"
-        //            });
-
-        //            var filetoblog = await _blogfile.CreateFileToBlog(new CreateFileToBlogVM
-        //            {
-        //                BlogId = BlogId,
-        //                ImageId = resBlogSlider.Data
-        //            });
-        //            if (filetoblog.Success)
-        //            {
-        //                var NameBG = await _fileuploader.CreateFileLocal(model.FileForDetials, "Blog", rnd, filename, "-BG");
-        //                return RedirectToAction("Index");
-
-        //            }
-
-        //            #endregion
+                }
+                var result = await mediator.Send(model);
 
 
+            }
 
 
-        //        }
-        //    }
-
-
-        //    return View(model);
-        //}
-
+            return View(model);
+        }
+        #endregion
         //#endregion
         //#region Edit Blog
         //[HttpGet]
@@ -167,7 +112,7 @@ namespace RashaPrimeWeb.WEB.Areas.Admin.Controllers
         //}
 
         //[HttpPost("/Admin/ManageBlog/Edit/{Id}")]
-  
+
         //public async Task<IActionResult> Edit(UpdateBlogVM model,int Id)
         //{
         //    var list = await _blogService.GetBlog();
@@ -189,7 +134,7 @@ namespace RashaPrimeWeb.WEB.Areas.Admin.Controllers
         //                {
         //                    await _blogcate.DeleteCategoryToBlog(item.BlogId);
         //                }
-                        
+
         //                foreach (var item in model.CategoryId)
         //                {
         //                    await _blogcate.CreateCategoryToBlog(

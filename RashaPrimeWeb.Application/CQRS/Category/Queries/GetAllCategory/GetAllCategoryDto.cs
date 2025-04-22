@@ -6,6 +6,7 @@ namespace RashaPrimeWeb.Application.CQRS.Category.Queries.GetAllCategory;
 
 public record GetAllCategoryDto : IMapFrom<Domain.Entities.Category>
 {
+    public int Id { get; set; }
     public bool IsSugestionHomePage { get; set; }
     public bool IsMenuHomePage { get; set; }
     public string? SVG_Icon { get; set; }

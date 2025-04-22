@@ -7,6 +7,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 using RashaPrimeWeb.Application.Common;
 using RashaPrimeWeb.Application.Contracts.Identity;
+using RashaPrimeWeb.Application.Contracts.Infrastructure;
 using RashaPrimeWeb.Domain.Interface;
 using RashaPrimeWeb.Infrastructure.Context;
 using RashaPrimeWeb.Infrastructure.Implement;
@@ -28,6 +29,7 @@ public static class ConfigureServices
         services.AddScoped<IUserService, UserService>();
         services.AddScoped<IRoleService, RoleService>();
         services.AddScoped<IAuthService, AuthService>();
+        services.AddScoped<IFileUploaderService, LocalUploaderService>();
 
         // Add DbContext for EF Core
         services.AddDbContext<ApplicationDbContext>(options =>
