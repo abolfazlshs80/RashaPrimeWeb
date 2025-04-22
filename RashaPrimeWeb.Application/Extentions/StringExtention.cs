@@ -169,6 +169,12 @@ public static class StringExtention
         //return Fileservice.DownloadFile(str, "Product");
 
 
+
+    }
+
+    public static string SetForLogoUrl(this string str)
+    {
+        return $"/Images/Logo/{str}";
     }
     public static string SetForProductBackUrl(this string str)
 	{
