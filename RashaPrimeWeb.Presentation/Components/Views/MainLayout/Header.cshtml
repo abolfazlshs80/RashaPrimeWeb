@@ -1,5 +1,5 @@
 ﻿@using System.Globalization
-
+@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
 @using Microsoft.AspNetCore.Mvc.Localization
 @model HeaderVM
 
@@ -84,7 +84,7 @@
 											<div class="single-mega-menu">
 												<h3 class="font-f-1">@Localizer["BlogTitle"]</h3>
 												<ul>
-													@foreach (var item in Model?.Blogs?.Items )
+													@foreach (var item in Model?.Blogs?.Items)
 													{
 														<li><a href="@item.ShortTitle.ForBlogUrl()"> @item.ShortTitle</a></li>
 													}
@@ -121,7 +121,7 @@
 
 									</li>
 								}
-								@foreach (var item in Model?.Languages ?.Items)
+								@foreach (var item in Model?.Languages?.Items)
 								{
 									<li class="">
 										<a href="/Language/Change/@item.Lang_Id">@item.Title</a>
@@ -132,27 +132,34 @@
 						</div>
 					</div>
 					<div class="header10-side-button">
-						@if (User.Identity.IsAuthenticated && User.IsInRole("Administrator"))
+						@if (User.Identity.IsAuthenticated)
 						{
-							<a class="login-btn" href="/Admin/ManageBlog/index">
-								<img alt="" src="/MainTemplate/consultia/Fa/assets/img/icons/login-lock.svg" />
-								@Localizer["LoginAdminButton"]
+							@if (User.IsInRole("Administrator"))
+							{
+								<a class="login-btn" >
+									<img alt="" src="/MainTemplate/consultia/Fa/assets/img/icons/login-lock.svg" />
+									@Localizer["LoginAdminButton"]
+								</a>
+							}
+
+							<a class="login-btn" asp-action="Logout" asp-controller="Account">
+								@Localizer["LogoutButton"]
 							</a>
 						}
 						else
 						{
-							<a class="login-btn" href="/login">
+							<a class="login-btn" asp-action="login" asp-controller="Account">
 								<img alt="" src="/MainTemplate/consultia/Fa/assets/img/icons/login-lock.svg" />
 								@Localizer["LoginButton"]
 							</a>
 						}
 
-						    <a class="new-btn7" href="service-1.html">
-                            <span>
-                                <img alt=""
-                                     src="/MainTemplate/consultia/Fa/assets/img/icons/new-btn7-icon.svg" />
-                            </span>مشاوره رایگان
-                        </a>
+						<a class="new-btn7" href="service-1.html">
+							<span>
+								<img alt=""
+									 src="/MainTemplate/consultia/Fa/assets/img/icons/new-btn7-icon.svg" />
+							</span>مشاوره رایگان
+						</a>
 					</div>
 				</div>
 			</div>
@@ -295,7 +302,7 @@
 						</div>
 						<a href="#"> @Model?.Setting?.Phone1</a>
 						<a href="#"> @Model?.Setting?.Phone2</a>
-					
+
 					</div>
 				</div>
 				<div class="footer-contact">
@@ -304,7 +311,7 @@
 							<img alt="" src="/MainTemplate/consultia/Fa/assets/img/icons/contact-email4.svg" />
 						</div>
 						<a href="#">@Model?.Setting?.Email</a>
-						
+
 					</div>
 				</div>
 			</div>

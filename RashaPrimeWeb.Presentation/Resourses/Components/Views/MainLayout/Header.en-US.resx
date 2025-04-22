@@ -168,4 +168,7 @@
   <data name="Test" xml:space="preserve">
     <value>test1</value>
   </data>
+  <data name="LogoutButton" xml:space="preserve">
+    <value>logout</value>
+  </data>
 </root>

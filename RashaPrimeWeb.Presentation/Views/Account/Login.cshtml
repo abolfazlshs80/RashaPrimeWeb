@@ -1,0 +1,65 @@
+﻿@model RashaPrimeWeb.Application.Models.Identity.Authentication.LoginDto
+
+
+@{
+	Layout = "~/Views/Shared/_Layout.cshtml";
+	string message = ViewBag.Error == null ? "     خوش آمدید! برای ورود ایمیل و رمز عبور خود را در زیر وارد" : ViewBag.Error;
+
+}
+
+<!--=====Form Start=======-->
+<div class="sign-form-area bg-13">
+	<div class="container">
+		<div class="row">
+			<div class="col-lg-6 col-md-8 m-auto">
+				<div class="sign-form-wrap">
+					<div class="sign-logo text-center">
+						<a href="/">
+							<img alt="" src="/MainTemplate/consultia/Fa/assets/img/logo/site-logo-6.svg" />
+						</a>
+					</div>
+					<div class="sign-form">
+						<div class="form-heading">
+							<h3>ورود به سیستم</h3>
+							<p>
+								@message
+							</p>
+						</div>
+						<form asp-action="Login" method="post">
+							<input type="hidden" name="ReturnUrl" value="@ViewBag.ReturnUrl" />
+							<label asp-for="Email">ایمیل</label>
+							<input id="email"
+							       asp-for="Email"
+							       placeholder="ایمیل خود را وارد کنید"
+							       type="email"/>
+							<label asp-for="Password">رمز عبور</label>
+							<input id="password"
+							       asp-for="Password"
+							       placeholder="رمز عبور خود را وارد کنید"
+							       type="password"/>
+							<div class="theme-input-group">
+								<div class="check-box-wrap">
+									<input class="check-box"
+									       id="check-box"
+									       asp-for="Email"
+									       type="checkbox"/>
+									<label asp-for="RememberMe">مرا وارد سیستم نگه دارید</label>
+								</div>
+								@*       <a href="forgot.html">رمز عبور را فراموشی رمز عبوره اید؟</a> *@
+							</div>
+							<div class="space40"></div>
+							<button class="theme-btn-11 full-btn" type="submit">
+								وارد شوید
+							</button>
+						</form>
+						@*  <div class="space20"></div>
+                        <h4>
+                            از قبل حساب کاربری دارید؟<a href="signup.html">به صورت رایگان ایجاد کنید</a>
+                        </h4> *@
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+<!--=====Form End=======-->

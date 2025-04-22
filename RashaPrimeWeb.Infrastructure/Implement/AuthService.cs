@@ -112,7 +112,8 @@ namespace RashaPrimeWeb.Infrastructure.Implement
             {
                 Email = request.Email,
                 UserName = request.Email,
-
+                FirstName = "اقای",
+                LastName = " ",
             };
 
             var status = await _userManager.CreateAsync(user, request.Password);

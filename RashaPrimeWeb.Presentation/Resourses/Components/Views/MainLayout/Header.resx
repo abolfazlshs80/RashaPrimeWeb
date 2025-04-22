@@ -168,4 +168,7 @@
   <data name="Test" xml:space="preserve">
     <value>0</value>
   </data>
+  <data name="LogoutButton" xml:space="preserve">
+    <value>س</value>
+  </data>
 </root>

@@ -17,7 +17,7 @@ namespace RashaPrimeWeb.Infrastructure.Implement
         }
         public async Task<ErrorOr<bool>> AddRole(AddRoleDto model)
         {
-            var res = await _roleManager.CreateAsync(new IdentityRole { Name = model.RoleName, NormalizedName = model?.ToString()?.ToUpper() });
+            var res = await _roleManager.CreateAsync(new IdentityRole { Name = model.RoleName });
             var newmodel = new ErrorOr<bool>();
             if (res.Succeeded)
             {
