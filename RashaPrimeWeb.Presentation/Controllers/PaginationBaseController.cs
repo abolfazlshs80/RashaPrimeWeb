@@ -169,7 +169,8 @@ public class PaginationBaseController(IMediator mediator) : Controller
 	}
 	
 	public int Take { get; set; } = 5;
-	public int Page { get; set; } = 0;
+	public int Page { get; set; } = 1;
+	public bool GetOldest { get; set; } = false;
 	public dynamic list { get; set; }
 
 

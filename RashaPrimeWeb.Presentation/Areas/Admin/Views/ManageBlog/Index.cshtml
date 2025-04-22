@@ -1,0 +1,36 @@
+﻿@using Kashi_Seramic.MVC.Models
+@using AutoMapper
+
+@inject IMapper _mapper
+@model IEnumerable<RashaPrimeWeb.Application.CQRS.Blog.Queries.GetAllBlog.GetAllBlogDto>
+@{
+	var title = "";
+	var ControllerName = "ManageBlog";
+	title = ViewBag.title;
+
+	Layout = "~/Areas/Admin/Views/Shared/_LayoutSiteAdmin.cshtml";
+
+}
+@Html.CustomForTableHtmlHelper(title,
+	_mapper.Map<List<TableInfoAdminVM>>(Model)
+	,ControllerName,"Blog")
+
+
+
+
+
+
+@Html.CustomPagInationHelper(ControllerName,( (int)(ViewBag.count)),((int)ViewBag.page))
+
+
+@section Links
+{
+
+}
+@section scripts{
+
+	@Html.CustomModalDeleteScriptHtmlHelper("ManageBlog/Delete/")
+
+}
+
+@Html.CustomModalDeleteHtmlHelper("ایا با حذف این مقاله موافق هستید؟","در صورت حذف کردن برای همیشه پاک خواهد شد","ManageBlog")

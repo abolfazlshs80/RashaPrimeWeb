@@ -136,7 +136,7 @@
 						{
 							@if (User.IsInRole("Administrator"))
 							{
-								<a class="login-btn" >
+								<a class="login-btn" asp-action="Index" asp-controller="ManageBlog" asp-area="Admin" >
 									<img alt="" src="/MainTemplate/consultia/Fa/assets/img/icons/login-lock.svg" />
 									@Localizer["LoginAdminButton"]
 								</a>
