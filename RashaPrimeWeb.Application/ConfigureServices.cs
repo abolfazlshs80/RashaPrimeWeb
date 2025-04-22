@@ -3,6 +3,7 @@ using FluentValidation;
 using MediatR;
 using Microsoft.Extensions.DependencyInjection;
 using RashaPrimeWeb.Application.Common;
+using RashaPrimeWeb.Application.Mappings;
 
 namespace RashaPrimeWeb.Application
 {
@@ -13,6 +14,7 @@ namespace RashaPrimeWeb.Application
 
     public static class ApplicationServiceRegistration
     {
+        
         public static IServiceCollection RegisterApplicationServices(this IServiceCollection services)
         {
             services.AddMediatR(cfg =>
@@ -28,6 +30,7 @@ namespace RashaPrimeWeb.Application
 
 
             services.AddAutoMapper(Assembly.GetExecutingAssembly());
+            services.AddAutoMapper(typeof(MappingProfile));
             return services;
          
         }

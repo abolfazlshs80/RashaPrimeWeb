@@ -1,54 +1,92 @@
-﻿using System.Reflection;
-using AutoMapper;
-using RashaPrimeWeb.Application.CQRS.Menu.Queries.GetAllMenu;
+﻿using AutoMapper;
+using Kashi_Seramic.MVC.Models;
+using RashaPrimeWeb.Application.CQRS.Blog.Queries.GetAllBlog;
 
-namespace RashaPrimeWeb.Application.Common.Mappings
+namespace RashaPrimeWeb.Application.Mappings
 {
-    internal class MappingProfile : Profile
+    public class MappingProfile : Profile
     {
         public MappingProfile()
         {
 
-            ApplyMappingsFromAssembly(Assembly.GetExecutingAssembly());
-        }
+            #region Tables
 
-        private void ApplyMappingsFromAssembly(Assembly assembly)
-        {
-            var mapFromType = typeof(IMapFrom<>);
 
-            var mappingMethodName = nameof(IMapFrom<object>.Mapping);
 
-            bool HasInterface(Type t) => t.IsGenericType && t.GetGenericTypeDefinition() == mapFromType;
+            //CreateMap<TableInfoAdminVM, RoleVM>()
+            //    .ForMember(dest => dest.RoleName, opt => opt.MapFrom(src => src.Title))
+            //    .ForMember(dest => dest.RoleId, opt => opt.MapFrom(src => src.ID))
+            //    .ForMember(dest => dest.RoleId, opt => opt.MapFrom(src => (src.Id.ToString()))).ReverseMap();
 
-            var types = assembly.GetExportedTypes().Where(t => t.GetInterfaces().Any(HasInterface)).ToList();
 
-            var argumentTypes = new Type[] { typeof(Profile) };
+            //CreateMap<TableInfoAdminVM, Employee>()
+            //     .ForMember(dest => dest.Id, opt => opt.MapFrom(src => src.Id.ToString()))
+            //    .ForMember(dest => dest.Id, opt => opt.MapFrom(src => src.ID))
+            //    .ForMember(dest => dest.Id, opt => opt.MapFrom(src => (src.Id.ToString())))
+            //    .ForMember(dest => dest.Username, opt => opt.MapFrom(src => src.Title)).ReverseMap();
 
-            foreach (var type in types)
-            {
-                var instance = Activator.CreateInstance(type);
+            CreateMap<GetAllBlogDto, TableInfoAdminVM>()
+                .ForMember(dest => dest.Id, opt => opt.MapFrom(src => src.Id))
+                //.ForMember(dest => dest.Date, opt => opt.MapFrom(src => src.))
+                .ForMember(dest => dest.Title, opt => opt.MapFrom(src => src.ShortTitle))
+                //.ForMember(dest => dest.Status, opt => opt.MapFrom(src => src.Status))
+                .ForMember(dest => dest.ImagePath, opt => opt.MapFrom(src => src.ImagePath));
+            //CreateMap<NewsVM, TableInfoAdminVM>()
+            //    .ForMember(dest => dest.Id, opt => opt.MapFrom(src => src.Id))
+            //    .ForMember(dest => dest.Date, opt => opt.MapFrom(src => src.LastModifiedDate))
+            //    .ForMember(dest => dest.Title, opt => opt.MapFrom(src => src.ShortTitle))
+            //    .ForMember(dest => dest.Status, opt => opt.MapFrom(src => src.Status))
+            //    .ForMember(dest => dest.ImagePath, opt => opt.MapFrom(src => src.FileToNews.FirstOrDefault().FileManager.Path));
 
-                var methodInfo = type.GetMethod(mappingMethodName);
+            //CreateMap<SliderVM, TableInfoAdminVM>()
+            //    .ForMember(dest => dest.Id, opt => opt.MapFrom(src => src.Id))
+            //    .ForMember(dest => dest.Date, opt => opt.MapFrom(src => src.LastModifiedDate))
+            //    .ForMember(dest => dest.Title, opt => opt.MapFrom(src => src.Title))
+            //    .ForMember(dest => dest.Status, opt => opt.MapFrom(src => src.Status))
+            //    .ForMember(dest => dest.ImagePath, opt => opt.MapFrom(src => src.PathImage));
 
-                if (methodInfo != null)
-                {
-                    methodInfo.Invoke(instance, new object[] { this });
-                }
-                else
-                {
-                    var interfaces = type.GetInterfaces().Where(HasInterface).ToList();
+            //CreateMap<MenuVM, TableInfoAdminVM>()
+            //    .ForMember(dest => dest.Id, opt => opt.MapFrom(src => src.Id))
+            //    .ForMember(dest => dest.Date, opt => opt.MapFrom(src => src.LastModifiedDate))
+            //    .ForMember(dest => dest.Title, opt => opt.MapFrom(src => src.Title))
+            //    .ForMember(dest => dest.Status, opt => opt.MapFrom(src => src.Status));
 
-                    if (interfaces.Count > 0)
-                    {
-                        foreach (var @interface in interfaces)
-                        {
-                            var interfaceMethodInfo = @interface.GetMethod(mappingMethodName, argumentTypes);
 
-                            interfaceMethodInfo?.Invoke(instance, new object[] { this });
-                        }
-                    }
-                }
-            }
+            //CreateMap<FaqVM, TableInfoAdminVM>()
+            //    .ForMember(dest => dest.Id, opt => opt.MapFrom(src => src.Id))
+            //    .ForMember(dest => dest.Date, opt => opt.MapFrom(src => src.LastModifiedDate))
+            //    .ForMember(dest => dest.Title, opt => opt.MapFrom(src => src.FullName))
+            //    .ForMember(dest => dest.Status, opt => opt.MapFrom(src => src.Status));
+            //CreateMap<TagVM, TableInfoAdminVM>()
+            //    .ForMember(dest => dest.Id, opt => opt.MapFrom(src => src.Id))
+            //    .ForMember(dest => dest.Date, opt => opt.MapFrom(src => src.LastModifiedDate))
+            //    .ForMember(dest => dest.Title, opt => opt.MapFrom(src => src.Name))
+            //    .ForMember(dest => dest.Status, opt => opt.MapFrom(src => src.Status));
+
+            //CreateMap<ServiceVM, TableInfoAdminVM>()
+            //    .ForMember(dest => dest.Id, opt => opt.MapFrom(src => src.Id))
+            //    .ForMember(dest => dest.Date, opt => opt.MapFrom(src => src.LastModifiedDate))
+            //    .ForMember(dest => dest.Title, opt => opt.MapFrom(src => src.TitleBrowser))
+            //    .ForMember(dest => dest.Status, opt => opt.MapFrom(src => src.Status));
+
+
+
+            //CreateMap<CommentToBlogVM, TableInfoAdminVM>()
+            //    .ForMember(dest => dest.Id, opt => opt.MapFrom(src => src.Id))
+            //    .ForMember(dest => dest.Date, opt => opt.MapFrom(src => src.LastModifiedDate))
+            //    .ForMember(dest => dest.Title, opt => opt.MapFrom(src => src.FullName))
+            //    .ForMember(dest => dest.Status, opt => opt.MapFrom(src => src.Status))
+            //    .ForMember(dest => dest.Sugestion, opt => opt.MapFrom(src => false));
+
+            //CreateMap<CategoryVM, TableInfoAdminVM>()
+            //    .ForMember(dest => dest.Id, opt => opt.MapFrom(src => src.Id))
+            //    .ForMember(dest => dest.Date, opt => opt.MapFrom(src => src.LastModifiedDate))
+            //    .ForMember(dest => dest.Title, opt => opt.MapFrom(src => src.Name))
+            //    .ForMember(dest => dest.Status, opt => opt.MapFrom(src => src.Status))
+            //    .ForMember(dest => dest.Sugestion, opt => opt.MapFrom(src => src.IsSugestionHomePage));
+            #endregion
+
         }
     }
+
 }

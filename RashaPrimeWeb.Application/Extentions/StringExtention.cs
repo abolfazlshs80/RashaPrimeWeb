@@ -162,7 +162,15 @@ public static class StringExtention
 
 
 	}
-	public static string SetForProductBackUrl(this string str)
+    public static string SetForBlogUrl(this string str)
+    {
+        return $"/Images/Product/{str}";
+        //      var Fileservice = new FileLocalService();
+        //return Fileservice.DownloadFile(str, "Product");
+
+
+    }
+    public static string SetForProductBackUrl(this string str)
 	{
 		return $"/Images/Product/{str.Replace("Slider", "BG")}";
 		//      var Fileservice = new FileLocalService();
