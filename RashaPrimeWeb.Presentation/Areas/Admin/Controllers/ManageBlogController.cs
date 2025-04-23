@@ -25,10 +25,10 @@ namespace RashaPrimeWeb.WEB.Areas.Admin.Controllers
         [Route("/Admin/ManageBlog")]
         public async Task<IActionResult> Index(int page = 0)
         {
-            if (string.IsNullOrEmpty(User.FindFirstValue(ClaimTypes.NameIdentifier)))
-            {
-                return RedirectToAction("Logout", "Account");
-            }
+            //if (string.IsNullOrEmpty(User.FindFirstValue(ClaimTypes.NameIdentifier)))
+            //{
+            //    return RedirectToAction("Logout", "Account");
+            //}
             var queryBlog = new GetAllBlogQuery(null, GetOldest, Page, Take);
             //  await _siteMap.CreateSiteMap();
             var list = await mediator.Send(queryBlog);

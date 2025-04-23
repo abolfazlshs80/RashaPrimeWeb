@@ -191,12 +191,14 @@ public class PaginationBaseController(IMediator mediator) : Controller
         var setting = await mediator.Send(querySetting);
         string ControllerName = ControllerContext.ActionDescriptor.ControllerName;
 		string ActionName = ControllerContext.ActionDescriptor.ActionName;
+
 		ViewBag.ControllerName = ControllerName;
 		ViewBag.Action = ActionName;
 		ViewBag.admin = true;
 		ViewBag.robot = "noindex,nofollow";
 		ViewBag.socialmedia = false;
 		ViewBag.title = GetAdminPageViewType(type, $" {GetAdminPageType(pagetype)} ");
+		ViewBag.TypePage = GetAdminPageType(pagetype);
 		//if (list != null)
 		//	ViewBag.keywords = keyworks.Join(",");
 		ViewBag.author = setting.OwnerName;

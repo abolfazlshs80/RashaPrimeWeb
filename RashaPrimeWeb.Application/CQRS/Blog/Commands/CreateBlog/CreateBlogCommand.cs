@@ -16,7 +16,7 @@ public record CreateBlogCommand : IRequest<ErrorOr<int>>
     public string Text { get; set; }
 
     public int Seen { get; set; }
-    public string Tag { get; set; }
+
     public string LinkKey { get; set; }
     public List<int> TagId { get; set; }
 

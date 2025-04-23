@@ -1,65 +1,64 @@
-﻿
-
-@model RashaPrimeWeb.Application.CQRS.Blog.Commands.CreateBlog.CreateBlogCommand
+﻿@model RashaPrimeWeb.Application.CQRS.Blog.Commands.CreateBlog.CreateBlogCommand
 @{
 }
 
 
 @{
-	
+
 
 	Layout = "~/Areas/Admin/Views/Shared/_LayoutSiteAdmin.cshtml";
 }
-<div class="col-md-12" dir="rtl">
-	<div class="card text-end ">
-		<div class="card-header ">
-			<h3 class="card-title  text-center">@ViewBag.title</h3>
-		</div>
-		<div class="card-body">
-			@using (Html.BeginForm("Create", "ManageBlog", FormMethod.Post, new { enctype = "multipart/form-data" }))
-			{
-				@Html.AntiForgeryToken()
-				@Html.ValidationSummary(false,"",htmlAttributes: new {@class="text-danger"})
-@*				<div asp-validation-summary="ModelOnly" class="text-danger"></div>*@
-			
-				@Html.CustomHiddenHtmlHelper("Model.Seen",Model.Seen.ToString())
-		
-				@Html.CustomHiddenHtmlHelper("Model.LinkKey",Model.LinkKey?.ToString())
-	
-				
-				@Html.CustomEditorHtmlHelper("Model.ShortTitle","عنوان  ")
 
-				@Html.CustomEditorHtmlHelper("Model.TitleBrowser","عنوان در مرورگر ")
-			
-				@Html.CustomEditorHtmlHelper("Model.LongTitle","توضیحات مختصر ")
-				@Html.CustomEditorHtmlHelper("Model.Tag","تگ ")
-				@await Component.InvokeAsync("LanguageItemCreateComponents")
-				@await Component.InvokeAsync("CategoryItemCreateComponents")
-				@await Component.InvokeAsync("TagItemCreateComponents")
-		
+<div class="portlet box shadow">
+	@using (Html.BeginForm("Create", "ManageBlog", FormMethod.Post, new { enctype = "multipart/form-data" }))
+	{
+		@Html.AntiForgeryToken()
+		@Html.ValidationSummary(false, "", htmlAttributes: new { @class = "text-danger" })
+		@*				<div asp-validation-summary="ModelOnly" class="text-danger"></div>*@
+
+		@Html.CustomHiddenHtmlHelper("Model.Seen", Model.Seen.ToString())
+
+		@Html.CustomHiddenHtmlHelper("Model.LinkKey", Model.LinkKey?.ToString())
+
+
+		@Html.CustomEditorHtmlHelper("Model.ShortTitle", "عنوان  ")
+
+		@Html.CustomEditorHtmlHelper("Model.TitleBrowser", "عنوان در مرورگر ")
+
+		@Html.CustomEditorHtmlHelper("Model.LongTitle", "توضیحات مختصر ")
+
+		@* 		
+
+				 *@
+		@await Component.InvokeAsync("LanguageItemCreateComponents")
+		@await Component.InvokeAsync("CategoryItemCreateComponents")
+		@await Component.InvokeAsync("TagItemCreateComponents")
+		@* 	
 				@Html.CustomFileHtmlHelper("Model.FileHeader","عکس صفحه اسلایدر")
-				@Html.CustomFileHtmlHelper("Model.FileForDetials","عکس در صفحه محصول")
+				@Html.CustomFileHtmlHelper("Model.FileForDetials","عکس در صفحه محصول") *@
 
-				@Html.CustomCkEditorHtmlHelper("Model.Text")
-				@Html.ValidationMessageFor(a=>a.TitleBrowser)
-				@Html.CustomSubmitHtmlHelper()
-			}
+		@* 		@Html.CustomCkEditorHtmlHelper("Model.Text") *@
 
-
-		</div>
-	</div>
+		@Html.CustomSubmitHtmlHelper()
+	}
 </div>
 
-@section Links
-	{
 
-	@Html.CustomUploadImageLinkHtmlHelper()
-	@Html.CustomCkEditorLinkHtmlHelper()
+
+
+
+@section Links
+{
+	<link href="/AdminModiran/assets/plugins/select2/dist/css/select2.min.css" rel="stylesheet">
+	@* 	@Html.CustomUploadImageLinkHtmlHelper()
+ *@
+
+
 
 }
-@section scripts{
-	@Html.CustomCkEditorScriptHtmlHelper()
-
-
-          }
+@section scripts {
+	@* 	<script src="https://cdn.tiny.cloud/1/7at3pq1ag4a2zejio7k06fy3a1kzkyi4ctywq47k8f3carzc/tinymce/6/tinymce.min.js" referrerpolicy="origin"></script>
+	<script src="/js/custom_tinymce.js"></script> *@
+	<partial name="Partials/_SelectScript" />
+}
 

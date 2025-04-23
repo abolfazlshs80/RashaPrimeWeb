@@ -41,6 +41,7 @@ public class GetAllBlogQueryHandler(IUnitOfWork unitOfWork, IMapper mapper)
             .Take(request.PageSize)
             .Select(LastBlog => new GetAllBlogDto
             {
+                Id = LastBlog.Id,
                 TitleBrowser = LastBlog.TitleBrowser,
                 LinkKey = LastBlog.LinkKey,
                 LongTitle = LastBlog.LongTitle,
