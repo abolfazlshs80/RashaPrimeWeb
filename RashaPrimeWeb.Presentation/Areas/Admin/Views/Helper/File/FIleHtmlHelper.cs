@@ -35,7 +35,7 @@ public static class CustomHtmlHelper
     public static IHtmlContent CustomCkEditorHtmlHelper(this IHtmlHelper htmlHelper, string name, string value = "", string title = "")
     {
 
-        string myTag = $"\t<textarea class=\"summernote\">\r\n\r\n</textarea>";
+        string myTag = $"\t<textarea name=\"Model.Text\" class=\"summernote\">\r\n\r\n</textarea>";
 
 
         return new HtmlString(myTag);
