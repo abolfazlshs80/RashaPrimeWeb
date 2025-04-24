@@ -35,7 +35,7 @@ public static class CustomHtmlHelper
     public static IHtmlContent CustomCkEditorHtmlHelper(this IHtmlHelper htmlHelper, string name, string value = "", string title = "")
     {
 
-        string myTag = $"\r\n\t\t\t\t<br />\r\n\t\t\t\t<h5>{title}</h5><textarea name=\"{name}\" class=\"myTextarea w-75 mt-3\">{value}</textarea>";
+        string myTag = $"\t<textarea class=\"summernote\">\r\n\r\n</textarea>";
 
 
         return new HtmlString(myTag);
