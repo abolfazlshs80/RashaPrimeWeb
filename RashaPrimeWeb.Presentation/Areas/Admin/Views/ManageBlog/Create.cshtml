@@ -27,9 +27,6 @@
 
 		@Html.CustomEditorHtmlHelper("Model.LongTitle", "توضیحات مختصر ")
 
-		@* 		
-
-				 *@
 		@await Component.InvokeAsync("LanguageItemCreateComponents")
 		@await Component.InvokeAsync("CategoryItemCreateComponents")
 		@await Component.InvokeAsync("TagItemCreateComponents")
@@ -38,6 +35,12 @@
 				@Html.CustomFileHtmlHelper("Model.FileForDetials","عکس در صفحه محصول") *@
 
 		@* 		@Html.CustomCkEditorHtmlHelper("Model.Text") *@
+		<textarea class="summernote">
+
+</textarea>
+		<div >
+			<p dir="rtl"><span style="font-family:Tahoma">هم اکنون نوشتن اولین نوشته خود را آغاز کنید...</span></p>
+		</div>
 
 		@Html.CustomSubmitHtmlHelper()
 	}
@@ -49,6 +52,7 @@
 
 @section Links
 {
+	<link href="/AdminModiran/assets/plugins/summernote/dist/summernote.css" rel="stylesheet">
 	<link href="/AdminModiran/assets/plugins/select2/dist/css/select2.min.css" rel="stylesheet">
 	@* 	@Html.CustomUploadImageLinkHtmlHelper()
  *@
@@ -59,6 +63,9 @@
 @section scripts {
 	@* 	<script src="https://cdn.tiny.cloud/1/7at3pq1ag4a2zejio7k06fy3a1kzkyi4ctywq47k8f3carzc/tinymce/6/tinymce.min.js" referrerpolicy="origin"></script>
 	<script src="/js/custom_tinymce.js"></script> *@
+	
+	<script src="/AdminModiran/assets/plugins/summernote/dist/summernote.min.js"></script>
+	<script src="/AdminModiran/assets/js/pages/summernote.js"></script>
 	<partial name="Partials/_SelectScript" />
 }
 
