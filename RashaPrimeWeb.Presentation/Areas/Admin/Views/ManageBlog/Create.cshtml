@@ -20,6 +20,7 @@
 
 		@Html.CustomHiddenHtmlHelper("Model.LinkKey", Model.LinkKey?.ToString())
 
+		@Html.HiddenFor(a=>a.LinkKey)
 
 		@Html.CustomEditorHtmlHelper("Model.ShortTitle", "عنوان  ")
 
@@ -52,10 +53,6 @@
 
 	<partial name="Partials/_EditorLink" />
 	<partial name="Partials/_SelectLink" />
-	@* 	@Html.CustomUploadImageLinkHtmlHelper()
- *@
-
-
 
 }
 @section scripts {

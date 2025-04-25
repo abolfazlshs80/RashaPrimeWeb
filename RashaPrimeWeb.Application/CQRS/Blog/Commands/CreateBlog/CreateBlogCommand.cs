@@ -17,11 +17,14 @@ public record CreateBlogCommand : IRequest<ErrorOr<int>>
 
     public int Seen { get; set; }
 
-    public string LinkKey { get; set; }
+    public string LinkKey
+    {
+        get { return RandomExtention.GetShortLink(""); }
+    }
     public List<int> TagId { get; set; }
 
     public List<int> CategoryId { get; set; }
-    public List<int> LanguageId { get; set; }
+    //public List<int> LanguageId { get; set; }
     public IFormFile FileForDetials { get; set; }
 
     public IFormFile FileHeader { get; set; }

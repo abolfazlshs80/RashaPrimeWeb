@@ -50,7 +50,6 @@ namespace RashaPrimeWeb.WEB.Areas.Admin.Controllers
             await SetViewBagAdmin(list.Items.Select(a => a.TitleBrowser).ToList(), AdminPageViewType.Create, AdminPageType.Blog);
             var model = new CreateBlogCommand();
 
-
             return View(model);
         }
 
@@ -61,21 +60,16 @@ namespace RashaPrimeWeb.WEB.Areas.Admin.Controllers
             var list = await mediator.Send(queryBlog);
             await SetViewBagAdmin(list.Items.Select(a => a.TitleBrowser).ToList(), AdminPageViewType.Create, AdminPageType.Blog);
 
-            model.LinkKey = "";
-            model.Lang_Id = 1;
-            if (ModelState.ErrorCount <= 3)
+            if (ModelState.IsValid )
             {
-                if (model.FileForDetials == null || model.FileHeader == null)
+                if (model.FileForDetials == null || model.FileHeader == null || model.CategoryId.Count < 1 || model.TagId.Count < 1)
                 {
                     return View(model);
                 }
-                if (model.CategoryId.Count < 1 || model.TagId.Count < 1)
-                {
-
-                }
                 var result = await mediator.Send(model);
-
-
+                if (result.IsError)
+                    return View(model);
+                return RedirectToAction("Index");
             }
 
 
