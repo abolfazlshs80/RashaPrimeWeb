@@ -13,7 +13,7 @@ public static class CustomHtmlHelper
         var value = multiple ? "multiple" : "";
 
         string myTag =
-            ($"		\t<input class=\"btn btn-success btn-block\" name=\"{name}\" type=\"file\" />");
+            ($"		\t<input class=\"btn btn-success btn-block my-5\" name=\"{name}\" type=\"file\" />");
 
         return new HtmlString(myTag);
     }
@@ -136,98 +136,91 @@ public static class CustomHtmlHelper
         return new HtmlString(myTag);
 
     }
-    public static IHtmlContent CustomForTableHtmlHelper(this IHtmlHelper htmlHelper, string title, List<TableInfoAdminVM> list, string ControllerName, string type, bool delete = true, bool edit = true, bool isSugestion = false)
+    public static IHtmlContent CustomForTableHtmlHelper(
+         this IHtmlHelper htmlHelper,
+         string title,
+         List<TableInfoAdminVM> list,
+         string controllerName,
+         string type,
+         bool delete = true,
+         bool edit = true,
+         bool isSuggestion = false)
     {
-
-
-
-        var html = new StringBuilder();
-        html.Clear();
-        if (list?.Count < 1 || list == null)
+        // اگر لیست خالی یا نال باشد، خروجی خالی برگردانده می‌شود
+        if (list == null || list.Count == 0)
         {
-
-         
+            return new HtmlString(string.Empty);
         }
-        else
-        {
 
+        StringBuilder html = new StringBuilder();
 
-
-            html.Append($@"<div class=""top-buttons-box mb-2"">
-                                        <a class=""btn btn-success"" href=""/Admin/{ControllerName}/Create"">
+        // ساختار اولیه جدول
+        html.Append(@$"<div class=""top-buttons-box mb-2"">
+                                        <a class=""btn btn-success"" href=""/Admin/{controllerName}/Create"">
                                             <i class=""icon-plus""></i>
                                             افزودن
                                         <div class=""paper-ripple""><div class=""paper-ripple__background""></div><div class=""paper-ripple__waves""></div></div></a>
                                     
                                     </div> 
-<table class=""table table-bordered table-hover table-striped dataTable no-footer"" id=""data-table"" role=""grid"" aria-describedby=""data-table_info"" style=""width: 100%;"">
-                        <thead>
-                            <tr role=""row"">
+        <table class=""table table-bordered table-hover table-striped dataTable no-footer"" id=""data-table"" role=""grid"" aria-describedby=""data-table_info"" style=""width: 100%;"">
+            <thead>
+                <tr role=""row"">
+                    <th class=""sorting"" tabindex=""0"" aria-controls=""data-table"" rowspan=""1"" colspan=""1"" aria-label=""ردیف: activate to sort column ascending"" style=""width: 109.391px;"">ردیف</th>
+                    <th class=""sorting"" tabindex=""0"" aria-controls=""data-table"" rowspan=""1"" colspan=""1"" aria-label=""عنوان: activate to sort column ascending"" style=""width: 287.219px;"">عنوان</th>
+                    <th class=""sorting_disabled"" rowspan=""1"" colspan=""1"" aria-label=""عملیات"" style=""width: 247.078px;"">عملیات</th>
+                </tr>
+            </thead>
+            <tbody>");
 
-<th class=""sorting"" tabindex=""0"" aria-controls=""data-table"" rowspan=""1"" colspan=""1"" aria-label=""ردیف: activate to sort column ascending"" style=""width: 109.391px;"">ردیف</th>
-<th class=""sorting"" tabindex=""0"" aria-controls=""data-table"" rowspan=""1"" colspan=""1"" aria-label=""ماده غذایی: activate to sort column ascending"" style=""width: 287.219px;"">عنوان </th>
+        // تولید ردیف‌ها
+        foreach (var item in list)
+        {
+            var newId = item?.Id ?? item.ID;
 
-<td class=""sorting_disabled"" rowspan=""1"" colspan=""1"" aria-label=""عملیات"" style=""width: 247.078px;"">عملیات</td>
-</tr>
-                        </thead>
-                        <tbody>
-");
+            // تولید ID یا تصویر بر اساس نوع
+            string idTag = GenerateIdTag( item,type);
 
-            foreach (var item in list)
-            {
-                var newId = item?.Id ?? item.ID;
+            // وضعیت و پیشنهاد صفحه اصلی
+            string status = item.Status ? "<i class=\"fa-solid fa-circle-check\"></i>" : "<i class=\"fa-solid fa-circle-xmark\"></i>";
+            string suggestionTag = isSuggestion ? "<i class=\"fa-solid fa-circle-check\"></i>" : "";
 
-                string Id = "";
-                if (type.Equals("Blog"))
-                {
-                    string PathImage = item.ImagePath.ImageForBlogUrl();
-                    string Imagetag = $"<a href=\"/{type}/{item.Id}/{item.Title} \"><img src=\"{PathImage}\" width=\"25\" height=\"25\" alt=\"{item.Title}\" /></a>";
-                    Id = Imagetag;
-                }
-                else if (type.Equals("Product"))
-                {
-                    string PathProductImage = item.ImagePath?.SetForProductUrl();
-                    string Imagetag = $"<a href=\"/{type}/{item.Id}/{item.Title} \"><img src=\"{PathProductImage}\" width=\"25\" height=\"25\" alt=\"{item.Title}\" /></a>";
-                    Id = Imagetag;
-                }
-                else if (type.Equals("BlogComment"))
-                {
-                    string Imagetag = $"<a href=\"/Blog/{item.Title} \">{newId}</a>";
-                    Id = Imagetag;
-                }
+            // دکمه‌های ویرایش و حذف
+            string editTag = edit
+                ? $"<a href=\"/Admin/{controllerName}/Edit/{newId}\" class=\"btn btn-info\">ویرایش<div class=\"paper-ripple\"><div class=\"paper-ripple__background\"></div><div class=\"paper-ripple__waves\"></div></div></a>"
+                : "";
+            string deleteTag = delete
+                ? $"<a href=\"/Admin/{controllerName}/Delete/{newId}\" class=\"btn btn-danger\">حذف<div class=\"paper-ripple\"><div class=\"paper-ripple__background\"></div><div class=\"paper-ripple__waves\"></div></div></a>"
+                : "";
 
-
-
-                else
-                    Id = newId;
-                string status = item.Status ? "<i class=\"fa-solid fa-circle-check\"></i>" : "<i class=\"fa-solid fa-circle-xmark\"></i>";
-                string IsSugestionHomePage = isSugestion ? "<i class=\"fa-solid fa-circle-check\"></i>" : "";
-                string EditTag = edit ? $"   <a href=\"/Admin/{ControllerName}/Edit/{newId}\" class=\"btn btn-info\">ویرایش<div class=\"paper-ripple\"><div class=\"paper-ripple__background\"></div><div class=\"paper-ripple__waves\"></div></div></a>" : "";
-                string DeleteTag = delete ? $"                     <a href=\"/Admin/{ControllerName}/Delete/{newId}\" class=\"btn btn-danger\">حذف<div class=\"paper-ripple\"><div class=\"paper-ripple__background\"></div><div class=\"paper-ripple__waves\"></div></div></a>" : "";
-
-
-                html.Append($@"""
-
-
-                            <tr role=""row"" class=""odd"">
-                               <td>{Id}</td>
-	                            <td>{item.Title} </td>
-	               
-	                            <td>
-		                 {EditTag}
-		                     {DeleteTag}
-	                            </td>
-                            </tr>
-                   
-                     
-                 """);
-            }
-            html.Append($"<   </tbody>\r\n\t\t\t\t    </table>");
-
+            // اضافه کردن ردیف به جدول
+            html.Append($@"
+                <tr role=""row"" class=""odd"">
+                    <td>{idTag}</td>
+                    <td>{item.Title}</td>
+                    <td>
+                        {editTag}
+                        {deleteTag}
+                    </td>
+                </tr>");
         }
 
-        return new HtmlString(html.ToString());
+        // بستن جدول
+        html.Append(@"
+            </tbody>
+        </table>");
 
+        return new HtmlString(html.ToString());
+    }
+
+    private static string GenerateIdTag(TableInfoAdminVM item, string type)
+    {
+        return type switch
+        {
+            "Blog" => $"<a href=\"/{type}/{item.Id}/{item.Title}\"><img src=\"{item.ImagePath.ImageForBlogUrl()}\" width=\"25\" height=\"25\" alt=\"{item.Title}\" /></a>",
+            "Product" => $"<a href=\"/{type}/{item.Id}/{item.Title}\"><img src=\"{item.ImagePath?.SetForProductUrl()}\" width=\"25\" height=\"25\" alt=\"{item.Title}\" /></a>",
+            "BlogComment" => $"<a href=\"/Blog/{item.Title}\">{item.Id}</a>",
+            _ => item.Id.ToString()
+        };
     }
     public static IHtmlContent CustomForTableHtmlHelper(this IHtmlHelper htmlHelper, string title, TableVM list, string ControllerName, string type, bool delete = true, bool edit = true, bool isSugestion = false)
     {
