@@ -30,12 +30,10 @@
 		@await Component.InvokeAsync("LanguageItemCreateComponents")
 		@await Component.InvokeAsync("CategoryItemCreateComponents")
 		@await Component.InvokeAsync("TagItemCreateComponents")
-		@* 	
-		
-				*@
+			
 		@Html.CustomFileHtmlHelper("Model.FileHeader","عکس صفحه اسلایدر")
-		@Html.CustomFileHtmlHelper("Model.FileForDetials","عکس در صفحه محصول") 
-	
+		@Html.CustomFileHtmlHelper("Model.FileForDetials","عکس در صفحه محصول")
+
 
 		@Html.CustomCkEditorHtmlHelper("Model.Text")
 

@@ -13,7 +13,7 @@ public static class CustomHtmlHelper
         var value = multiple ? "multiple" : "";
 
         string myTag =
-            ($"		\t<div class=\"form-group relative mt-3 mb-4\">\r\n\t\t\t<input type=\"file\" class=\"form-control\"> \r\n\t\t\t<div class=\"input-group round\"> \r\n\t\t\t\t<input name=\"{name}\" type=\"text\" class=\"form-control file-input\" placeholder=\"برای آپلود کلیک کنید\"> \r\n\t\t\t\t<span class=\"input-group-btn\"> \r\n\t\t\t\t\t<button type=\"button\" class=\"btn btn-success\"> \r\n\t\t\t\t\t\t<i class=\"icon-picture\"></i>\r\n\t\t\t\t\t\t{text} \r\n\t\t\t\t\t\t<div class=\"paper-ripple\"><div class=\"paper-ripple__background\"></div><div class=\"paper-ripple__waves\"></div></div></button>\r\n\t\t\t\t</span> \r\n\t\t\t</div><!-- /.input-group -->\r\n\t\t\t<div class=\"help-block\"></div>\r\n\t\t</div>");
+            ($"		\t<input class=\"btn btn-success btn-block\" name=\"{name}\" type=\"file\" />");
 
         return new HtmlString(myTag);
     }
