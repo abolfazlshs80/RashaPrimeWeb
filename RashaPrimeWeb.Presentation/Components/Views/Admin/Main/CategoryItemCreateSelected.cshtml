@@ -1,0 +1,31 @@
+﻿
+@model RashaPrimeWeb.Application.Models.ViewModel.Admin.HtmlHelper.ListDropDownCategory
+
+@{
+	Layout = null;
+}
+
+
+
+
+
+
+<div class="portlet-body">
+	<div class="form-group">
+		<label>انتخاب دسته های مرتبط</label>
+		<select class="form-control select2" name="Model.CategoryId" multiple>
+			@foreach (var category in Model.Category)
+			{
+				string selected = Model.CategoryActive.Any(a => a.Equals(category.Id)) ? "selected" : "";
+				<option @selected value="@category.Id">@category.Name</option>
+
+			}
+		</select>
+	</div><!-- /.form-group -->
+</div><!-- /.portlet-body -->
+
+
+
+
+
+
