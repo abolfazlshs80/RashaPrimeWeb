@@ -1,6 +1,8 @@
 ﻿using AutoMapper;
 using Kashi_Seramic.MVC.Models;
+using RashaPrimeWeb.Application.CQRS.Blog.Commands.UpdateBlog;
 using RashaPrimeWeb.Application.CQRS.Blog.Queries.GetAllBlog;
+using RashaPrimeWeb.Application.CQRS.Blog.Queries.GetBlog;
 
 namespace RashaPrimeWeb.Application.Mappings
 {
@@ -9,6 +11,7 @@ namespace RashaPrimeWeb.Application.Mappings
         public MappingProfile()
         {
 
+            CreateMap<GetBlogDto, UpdateBlogCommand>().ReverseMap();
             #region Tables
 
 
