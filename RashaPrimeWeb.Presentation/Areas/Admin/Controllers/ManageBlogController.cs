@@ -9,7 +9,9 @@ using Microsoft.CodeAnalysis.CSharp.Syntax;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
 using RashaPrimeWeb.Application.CQRS.Blog.Commands.CreateBlog;
+using RashaPrimeWeb.Application.CQRS.Blog.Commands.UpdateBlog;
 using RashaPrimeWeb.Application.CQRS.Blog.Queries.GetAllBlog;
+using RashaPrimeWeb.Application.CQRS.Blog.Queries.GetBlog;
 
 
 namespace RashaPrimeWeb.WEB.Areas.Admin.Controllers
@@ -17,7 +19,7 @@ namespace RashaPrimeWeb.WEB.Areas.Admin.Controllers
 
     [Area("Admin")]
     // [Authorize(Roles = "Administrator,Teacher")]
-    public class ManageBlogController(IMediator mediator) : PaginationBaseController(mediator)
+    public class ManageBlogController(IMediator mediator,IMapper mapper) : PaginationBaseController(mediator)
     {
 
         [Route("/Admin/ManageBlog/Index/{page?}")]
@@ -76,34 +78,25 @@ namespace RashaPrimeWeb.WEB.Areas.Admin.Controllers
             return View(model);
         }
         #endregion
-        //#endregion
-        //#region Edit Blog
-        //[HttpGet]
-        //[Route("/Admin/ManageBlog/Edit/{id}")]
-        //public async Task<IActionResult> Edit(int id)
-        //{
-        //    var list = await _blogService.GetBlog();
-        //    await SetViewBagAdmin(list.Select(a => a.TitleBrowser).ToList(), AdminPageViewType.Update, AdminPageType.Blog);
-        //    //  string userId = User.FindFirst("uid")?.ToString().Replace("uid: ", "");
-        //    //var user = await _userService.GetEmployee(userId);
 
-        //    var model = await _blogService.GetBlogDetails(id);
-        //    if (model == null)
-        //        return NotFound();
-        //    //if (User.IsInRole("Teacher"))
-        //    //{
-        //    //    if ((await _blogService.UserInOwner(userId, id)).Success)
-        //    //        return View(_mapper.Map<UpdateBlogVM>(model));
-        //    //    else
-        //    //        return RedirectToAction("Index");
-        //    //}
-        //    //else
+        #region Edit Blog
+        [HttpGet]
+        [Route("/Admin/ManageBlog/Edit/{id}")]
+        public async Task<IActionResult> Edit(int id)
+        {
+            var queryBlog = new GetAllBlogQuery(null, GetOldest, Page, Take);
+            var list = await mediator.Send(queryBlog);
+            await SetViewBagAdmin(list.Items.Select(a => a.TitleBrowser).ToList(), AdminPageViewType.Update, AdminPageType.Blog);
 
-        //    var newmodel = _mapper.Map<UpdateBlogVM>(model);
-        //    newmodel.CategoryId = model.CategoryToBlog.Select(a => a.CategoryId).ToList();
-        //    return View(newmodel);
+            var model =  new GetBlogQuery(id);
+            var newmodel = await mediator.Send(model);
+            if (model == null)
+                return NotFound();
+     
+       
+            return View(mapper.Map<UpdateBlogCommand>(newmodel));
 
-        //}
+        }
 
         //[HttpPost("/Admin/ManageBlog/Edit/{Id}")]
 
@@ -209,7 +202,7 @@ namespace RashaPrimeWeb.WEB.Areas.Admin.Controllers
         //    return View(model);
         //}
 
-        //#endregion
+        #endregion
 
         //#region Delete Blog
         //[HttpPost("/Admin/ManageBlog/Delete")]
