@@ -1,0 +1,58 @@
+﻿
+@model RashaPrimeWeb.Application.CQRS.Blog.Commands.UpdateBlog.UpdateBlogCommand
+@{
+}
+
+
+@{
+
+	Layout = "~/Areas/Admin/Views/Shared/_LayoutSiteAdmin.cshtml";
+}
+<div class="col-md-12" dir="rtl">
+	<div class="card text-end ">
+		<div class="card-header ">
+			<h3 class="card-title  text-center"> @ViewBag.title </h3>
+		</div>
+		<div class="card-body">
+			@using (Html.BeginForm("Edit", "ManageBlog", FormMethod.Post, new { enctype = "multipart/form-data" }))
+			{
+				@Html.AntiForgeryToken()
+				@Html.ValidationSummary(false,"",htmlAttributes: new {@class="text-danger"})
+
+
+				@Html.CustomHiddenHtmlHelper("Model.Id",Model.Id.ToString())
+			
+
+				@Html.CustomEditorHtmlHelper("Model.ShortTitle","عنوان",Model.ShortTitle)
+
+				@Html.CustomEditorHtmlHelper("Model.TitleBrowser","عنوان در مرورگر",Model.TitleBrowser)
+
+				@Html.CustomEditorHtmlHelper("Model.LongTitle","توضحیات مختصر",Model.LongTitle)
+
+				@await Component.InvokeAsync("CategoryItemCreateSelectedComponents", new { cates =new List<int>()})
+				@await Component.InvokeAsync("TagItemCreateComponents")
+				@Html.CustomFileHtmlHelper("Model.FileHeader","تصویر برای  اسلایدر صفحه اصلی 272*488")
+				@Html.CustomFileHtmlHelper("Model.FileForDetials","تصویر برای  نمایش مقاله 417*")
+				@Html.CustomCkEditorHtmlHelper("Model.Text",Model.Text)
+
+				@Html.CustomSubmitHtmlHelper()
+				
+			}
+
+
+		</div>
+	</div>
+</div>
+@section Links
+{
+
+	<partial name="Partials/_EditorLink" />
+	<partial name="Partials/_SelectLink" />
+
+}
+@section scripts {
+
+
+	<partial name="Partials/_EditorScript" />
+	<partial name="Partials/_SelectScript" />
+}
