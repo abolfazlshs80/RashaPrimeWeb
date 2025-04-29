@@ -29,7 +29,7 @@ public class GetBlogQueryHandler(IUnitOfWork unitOfWork, IMapper mapper)
         mappingBlog.ShortTitle = LastBlog.ShortTitle;
         mappingBlog.Lang_Id = LastBlog.Lang_Id;
         mappingBlog.Seen = LastBlog.Seen;
-
+        mappingBlog.Text = LastBlog.Text;
 
         #endregion
 
