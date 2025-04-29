@@ -27,6 +27,7 @@ public class UpdateBlogCommandHandler(IUnitOfWork unitOfWork, IMapper mapper)
             Blog.Lang_Id = request.Lang_Id;
             Blog.Text = request.Text;
             Blog.Seen = request.Seen;
+            
 
 
 
